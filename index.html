@@ -1,0 +1,929 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#000000">
+<title>CTET Primary Master Mock Test — 270 Questions</title>
+<style>
+:root{--bg:#000;--panel:#090909;--panel2:#111;--line:#292929;--text:#fff;--muted:#aaa;--green:#18e76b;--red:#ff3152;--gold:#ffd45a;--blue:#5f8cff}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;overflow:hidden}
+body.light{--bg:#f4f6fa;--panel:#fff;--panel2:#f1f3f7;--line:#d8dce5;--text:#111;--muted:#626a78;--gold:#8b5d00;--blue:#315fce}
+button,input{font:inherit}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.hidden{display:none!important}
+.topbar{position:fixed;left:0;right:0;top:0;height:68px;z-index:50;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:8px 12px;background:rgba(0,0,0,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+body.light .topbar{background:rgba(255,255,255,.95)}
+.leftbox{justify-self:start}
+.rightbox{justify-self:end;display:flex;align-items:center;gap:8px}
+.centerbox{justify-self:center;text-align:center;min-width:100px}
+.themeBtn,.adminBtn,.correctBtn{border:1px solid #444;border-radius:11px;padding:9px 12px;background:#111;color:#fff;font-weight:1000;letter-spacing:.03em}
+body.light .themeBtn,body.light .adminBtn,body.light .correctBtn{background:#fff;color:#111;border-color:#c4c9d3}
+.adminBtn{background:var(--gold);color:#000;border-color:var(--gold)}
+.correctBtn{display:block;margin:auto;background:#0b301b;border-color:#1e9c52;color:#69ff9d;min-width:110px}
+.timer{margin-top:3px;font-variant-numeric:tabular-nums;font-size:18px;font-weight:1000;letter-spacing:.04em}
+.timer.warn{color:#fff!important;animation:timerBlink .48s steps(2,start) infinite!important;transform:scale(1.32);text-shadow:0 0 6px #fff,0 0 16px var(--red),0 0 32px var(--red),0 0 48px #ff8a00;font-size:clamp(24px,4vw,34px)!important;letter-spacing:.08em}@keyframes timerBlink{0%,100%{opacity:1;filter:brightness(1.2);transform:scale(1.32)}50%{opacity:.28;filter:brightness(2.3);transform:scale(1.5)}}
+.screen{position:fixed;inset:68px 0 0;display:flex;align-items:center;justify-content:center;padding:18px}
+.startCard{width:min(560px,92vw);background:linear-gradient(180deg,#101010,#070707);border:1px solid #2a2a2a;border-radius:24px;padding:30px;box-shadow:0 25px 90px rgba(0,0,0,.65)}
+body.light .startCard{background:#fff;border-color:#d8dce5;box-shadow:0 20px 60px rgba(0,0,0,.10)}
+.brand{margin:0;text-align:center;font-size:clamp(30px,6vw,46px);font-weight:1000;letter-spacing:.10em}
+label{display:block;margin:28px 0 9px;font-weight:1000;font-size:18px}
+.name{width:100%;height:56px;border:1px solid #3a3a3a;border-radius:14px;background:#050505;color:#fff;padding:0 16px;outline:none;font-weight:800;font-size:18px}
+body.light .name{background:#f8f9fc;color:#111;border-color:#cfd4de}
+.name:focus{border-color:var(--blue)}
+.startBtn{width:100%;height:58px;margin-top:12px;border:0;border-radius:14px;background:#fff;color:#000;font-weight:1000;font-size:18px;letter-spacing:.04em}
+.exam{position:fixed;inset:68px 0 0;height:calc(100dvh - 68px);padding:10px 12px}
+.examInner{height:100%;max-width:1100px;margin:auto;display:flex;flex-direction:column;min-height:0}
+.progress{height:58px;color:var(--muted);font-size:13px;font-weight:1000;padding:0 3px;display:block}
+.progressTop{height:28px;display:flex;align-items:center;justify-content:space-between;gap:8px;line-height:1.05}
+.progressTop span{font-weight:1000}
+.progressTrack{height:4px;width:100%;border-radius:999px;background:#ff3152;border:1px solid rgba(255,49,82,.65);overflow:hidden;box-shadow:inset 0 0 5px rgba(0,0,0,.35),0 0 5px rgba(255,49,82,.14)}
+.progressFill{height:100%;width:0%;background:#18e76b;border-radius:999px;transition:width .35s ease;box-shadow:0 0 7px rgba(24,231,107,.55)}
+.progressFill.done{background:#18e76b;box-shadow:0 0 9px rgba(24,231,107,.7)}
+.qcard{flex:1;min-height:0;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:clamp(14px,2.2vh,22px);display:flex;flex-direction:column;box-shadow:0 18px 70px rgba(0,0,0,.35)}
+.qnum{color:var(--gold);font-weight:1000;font-size:15px;margin-bottom:7px}
+.question{font-size:clamp(16px,2.3vh,21px);line-height:1.38;font-weight:800;max-width:1000px}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:clamp(12px,2vh,18px)}
+.opt{min-height:54px;border:1px solid #333;border-radius:13px;background:var(--panel2);color:var(--text);padding:11px 13px;text-align:left;display:flex;gap:10px;align-items:flex-start;font-weight:750;line-height:1.28;font-size:clamp(14px,1.9vh,17px);transition:.12s}
+.opt:active{transform:scale(.995)}
+.opt.selected{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue) inset}
+.opt.correct{background:#123e23;border-color:#18e76b;color:#70ff9f;box-shadow:0 0 0 1px #18e76b inset}
+.opt.wrong{background:#470b17;border-color:#ff3152;color:#ff91a4;box-shadow:0 0 0 1px #ff3152 inset}
+.letter{font-weight:1000;min-width:24px}
+.feedback{min-height:26px;margin-top:7px;font-size:13px;font-weight:1000;max-height:30vh;overflow-y:auto;padding-right:4px;line-height:1.5;flex-shrink:0}
+.feedback.ok{color:var(--green)} .feedback.bad{color:var(--text)}
+.wrong-title{color:var(--red);font-size:16px;font-weight:1000;margin-bottom:6px}.explain{color:var(--green);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;max-height:30vh;overflow-y:auto;line-height:1.6;font-weight:750}
+.timer.warn{color:#fff;background:linear-gradient(135deg,#ff1744,#ff6b00,#ffd400,#ff1744);background-size:300% 300%;padding:6px 14px;border-radius:14px;font-size:clamp(22px,4vw,34px);line-height:1;box-shadow:0 0 10px #ff1744,0 0 24px #ff6b00,0 0 42px rgba(255,212,0,.8);text-shadow:0 0 7px #fff,0 0 16px #ff1744;animation:timerGlow 1.15s ease-in-out infinite,timerGradient 2s linear infinite;transform:scale(1.12)}
+@keyframes timerGlow{0%,100%{opacity:1;transform:scale(1.12)}50%{opacity:.55;transform:scale(1.22)}}
+@keyframes timerGradient{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.actions{margin-top:auto;padding-top:10px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;flex-shrink:0;background:var(--panel)}
+.next{width:min(240px,100%);height:54px;border:2px solid #fff;border-radius:14px;background:#fff;color:#000;font-weight:1000;font-size:18px;transition:.12s;flex-shrink:0}.next.answer-correct{background:#18e76b;border-color:#18e76b;color:#000;box-shadow:0 0 14px rgba(24,231,107,.45)}.next.answer-wrong{background:#ff3152;border-color:#ff3152;color:#fff;animation:shake .45s ease-in-out 0s 2;box-shadow:0 0 14px rgba(255,49,82,.45)}@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}50%{transform:translateX(5px)}75%{transform:translateX(-3px)}}
+.next:disabled{opacity:.35;cursor:not-allowed}
+.next.tap-vibrate{animation:buttonVibrate .34s linear}
+@keyframes buttonVibrate{0%,100%{transform:translateX(0) scale(1)}20%{transform:translateX(-6px) scale(1.02)}40%{transform:translateX(6px) scale(1.02)}60%{transform:translateX(-5px) scale(1.02)}80%{transform:translateX(4px) scale(1.01)}}
+.revisionBox{margin-top:18px;padding:16px;border:1px solid #ff3152;border-radius:16px;background:linear-gradient(135deg,rgba(255,49,82,.12),rgba(255,212,90,.08));box-shadow:0 0 24px rgba(255,49,82,.12)}
+.revisionTitle{font-size:18px;font-weight:1000;color:#ffd45a}
+.revisionInfo{margin-top:5px;color:var(--muted);font-weight:750;line-height:1.45}
+.revisionBtn{margin-top:11px;width:100%;min-height:54px;border:2px solid #ffd45a;border-radius:13px;background:linear-gradient(90deg,#5b0010,#9d1230,#5b0010);background-size:200% 100%;color:#fff;font-weight:1000;font-size:17px;box-shadow:0 0 12px rgba(255,49,82,.5);animation:revisionPulse 1.5s ease-in-out infinite}
+@keyframes revisionPulse{0%,100%{box-shadow:0 0 10px rgba(255,49,82,.45)}50%{box-shadow:0 0 26px rgba(255,212,90,.8)}}
+.result,.admin{position:fixed;inset:68px 0 0;overflow:auto;padding:18px}
+.resultCard,.adminCard{width:min(1150px,100%);margin:auto;background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:22px}
+.resultTitle{text-align:center;font-weight:1000;letter-spacing:.08em;margin:0}
+.candidate{text-align:center;color:var(--muted);font-weight:800;margin-top:7px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:18px}
+.stat{border:1px solid var(--line);background:var(--panel2);border-radius:14px;padding:13px}
+.stat small{display:block;color:var(--muted);font-weight:800}
+.stat strong{display:block;font-size:22px;margin-top:4px;font-weight:1000}
+.review{margin-top:20px;display:grid;gap:9px}
+.reviewRow{border:1px solid var(--line);border-radius:13px;padding:13px;background:var(--panel2)}
+.reviewQ{font-weight:900;line-height:1.35}
+.reviewA{margin-top:7px;color:var(--muted);font-size:14px;line-height:1.4}
+.tag{display:inline-block;border-radius:999px;padding:4px 8px;font-size:11px;font-weight:1000;margin-left:5px}
+.ok{background:#123e23;color:#70ff9f} .bad{background:#470b17;color:#ff91a4} .skip{background:#303030;color:#bbb}
+.resultActions,.adminTools{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+.resultActions button,.adminTools button{border:1px solid #444;border-radius:11px;padding:11px 13px;background:#111;color:#fff;font-weight:900}
+body.light .resultActions button,body.light .adminTools button{background:#fff;color:#111;border-color:#c4c9d3}
+.danger{border-color:#9d253b!important;color:#ff91a4!important}
+.adminHead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.adminTitle{margin:0;font-weight:1000}
+.tableWrap{overflow:auto;margin-top:16px}
+table{width:100%;border-collapse:collapse;min-width:900px}
+th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+th{color:var(--muted);font-size:12px}
+.empty{padding:30px;text-align:center;color:var(--muted);font-weight:800}
+.status{margin-top:10px;text-align:center;font-size:12px;font-weight:1000}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1000}
+@media(max-width:700px){
+ .topbar{height:62px;padding:6px 6px;grid-template-columns:auto 1fr auto;gap:4px;overflow:visible}
+ .leftbox{min-width:0;overflow:visible}
+ .topButtons{gap:4px;flex-wrap:nowrap}
+ .screen,.exam,.result,.admin{inset:62px 0 0}
+ .exam{height:calc(100dvh - 62px);padding:7px 8px}
+ .themeBtn,.adminBtn,.correctBtn{font-size:9px;padding:7px 6px;border-radius:9px;letter-spacing:0}
+ .viewBtn{display:inline-flex!important;visibility:visible!important;opacity:1!important;font-size:8px;padding:7px 5px}
+ .correctBtn{min-width:68px;padding-left:5px;padding-right:5px}
+ .centerbox{min-width:68px}
+ .timer{font-size:15px}
+ .adminBtn{font-size:8px;padding:7px 5px}
+ .startCard{padding:23px}
+ .options{grid-template-columns:1fr;gap:7px}
+ .opt{min-height:49px;padding:9px 11px}
+ .qcard{border-radius:16px;padding:13px}
+ .progress{height:42px;font-size:11px}
+ .progressTop{height:25px}
+ .progressTrack{height:15px}
+ .next{height:52px;width:100%}
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .result,.admin{padding:10px}
+}
+@media(max-width:360px){
+ .topbar{padding-left:4px;padding-right:4px;gap:2px}
+ .topButtons{gap:2px}
+ .themeBtn{font-size:8px;padding:6px 4px}
+ .viewBtn{font-size:7px;padding:6px 4px}
+ .adminBtn{font-size:7px;padding:6px 4px}
+ .correctBtn{font-size:8px;min-width:62px}
+ .timer{font-size:14px}
+}
+@media(max-height:620px) and (orientation:landscape){
+ .question{font-size:15px;line-height:1.25}
+ .opt{min-height:42px;font-size:13px;padding:7px 9px}
+ .options{gap:6px;margin-top:7px}
+ .qcard{padding:10px}
+ .next{height:45px}
+}
+@media print{
+ html,body{overflow:visible;background:#fff!important;color:#000!important}
+ .topbar,.resultActions,.adminTools,#fx{display:none!important}
+ .result,.admin{position:static;overflow:visible;padding:0}
+ .resultCard,.adminCard{border:0;box-shadow:none}
+}
+
+.topButtons{display:flex;align-items:center;gap:6px}
+.viewBtn{font-size:10px;padding:7px 9px;white-space:nowrap}
+.viewModeWrap{position:absolute;inset:0;overflow:auto;padding:18px 12px 90px;background:var(--bg)}
+.viewModeInner{width:min(1100px,100%);margin:auto}
+.viewModeHeader{position:sticky;top:0;z-index:4;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px;font-weight:1000;display:flex;justify-content:space-between;gap:10px}
+.viewModeHeader span{color:var(--muted);font-size:12px}
+.viewQuestion{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:10px}
+.viewQuestion .question{margin-bottom:10px}
+.viewQuestion .options{margin-top:8px}
+.viewOnlyOpt{pointer-events:none!important;cursor:default!important;opacity:1!important}
+.viewModeExit{position:sticky;bottom:0;width:100%;height:54px;border:2px solid #fff;border-radius:14px;background:#fff;color:#000;font-weight:1000;font-size:17px;margin-top:8px}
+body.light .viewModeExit{border-color:#111}
+@media(max-width:700px){
+  .viewBtn{font-size:9px;padding:7px 7px}
+  .viewModeWrap{padding:10px 8px 76px}
+  .viewModeHeader{font-size:12px;padding:10px}
+  .viewQuestion{padding:13px}
+}
+
+</style>
+
+<style id="revision-banner-style">#revisionBanner{display:none;text-align:center;font-weight:800;font-size:22px;line-height:1.4;margin:12px 0;padding:0;background:none;border:none;box-shadow:none;}
+#revisionBanner.show{display:block}
+.revisionStar{color:red;font-weight:800;animation:revisionBlink 1s step-end infinite;text-shadow:none;background:none;}
+.revisionText{color:#16a34a;font-weight:800;animation:revisionBlink 1s step-end infinite;text-shadow:none;background:none;}
+@keyframes revisionTextBlink{0%,100%{opacity:1;filter:brightness(1.1)}50%{opacity:.22;filter:brightness(2.4)}}
+@keyframes revisionStarBlink{0%,100%{opacity:1;filter:brightness(1.1)}50%{opacity:.18;filter:brightness(2.5)}}</style>
+<style id="revisionTextFix">
+.revisionText{
+  color:#ff0000 !important;
+  font-weight:900 !important;
+  font-size:1.12em !important;
+  text-shadow:none !important;
+  background:none !important;
+  border:none !important;
+  animation:revisionTextBlink 0.8s steps(1,end) infinite !important;
+}
+@keyframes revisionTextBlink{
+  0%,49%{opacity:1;visibility:visible}
+  50%,100%{opacity:0;visibility:hidden}
+}
+</style>
+<style id="REAL_EXAM_LAST10_TIMER_ONLY">
+#timer.real-exam-last10{
+  color:#ff0000 !important;
+  background:transparent !important;
+  background-color:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+  animation:realExamLast10Blink 1.8s ease-in-out infinite !important;
+}
+@keyframes realExamLast10Blink{
+  0%,100%{opacity:1}
+  50%{opacity:.45}
+}
+</style>
+</head>
+<body>
+<div id="viewScreen" class="hidden" style="position:fixed;inset:0;z-index:200;background:var(--bg);"></div>
+<canvas id="fx"></canvas>
+
+<header class="topbar">
+  <div class="leftbox"><div class="topButtons"><button id="themeBtn" class="themeBtn" type="button">☀ THEME</button><button id="viewBtn" class="themeBtn viewBtn" type="button">VIEW QUESTIONS</button></div></div>
+  <div class="centerbox">
+    <button id="correctBtn" class="correctBtn" type="button">CORRECT: 0</button>
+    <div id="timer" class="timer">250:00</div>
+  </div>
+  <div class="rightbox"><button id="adminBtn" class="adminBtn" type="button">ADMIN PORTAL</button></div>
+</header>
+
+<section id="start" class="screen">
+  <div class="startCard">
+    <h1 class="brand">MOCK TEST</h1>
+    <label for="candidate">Candidate Name</label>
+    <input id="candidate" class="name" autocomplete="name" spellcheck="false">
+    <button id="startBtn" class="startBtn" type="button">EXAM START</button>
+  </div>
+</section>
+
+<section id="exam" class="exam hidden">
+  <div class="examInner">
+    <div class="progress"><div class="progressTop"><span id="progress"></span><span id="sectionLabel"></span></div><div class="progressTrack"><div id="progressFill" class="progressFill"></div></div></div>
+    <div id="revisionBanner"><span class="revisionStar">★</span> <span class="revisionText">যেগুলি ভুল করলাম</span> <span class="revisionStar">★</span></div><div id="qcard" class="qcard"></div>
+  </div>
+</section>
+
+<section id="result" class="result hidden"></section>
+
+<section id="admin" class="admin hidden">
+  <div class="adminCard">
+    <div class="adminHead">
+      <div><h2 class="adminTitle">CENTRAL SCOREBOARD ADMIN PORTAL</h2></div>
+      <div class="adminTools">
+        <button id="refreshAdmin">REFRESH RESULTS</button>
+        <button id="csvAdmin">DOWNLOAD RESULTS CSV</button>
+        <button id="printAdmin">PRINT / SAVE PDF REPORT</button>
+        <button id="clearAdmin" class="danger">CLEAR ALL RESULTS</button>
+      </div>
+    </div>
+    <div id="adminTable"></div>
+  </div>
+</section>
+
+<script>
+const QUESTIONS=[{"orig":1,"id":1,"text":"জিম করবেট ন্যাশনাল পার্ক (Jim Corbett National Park) ভারতের কোন রাজ্যে অবস্থিত?","options":["উত্তরাখণ্ড","অসম","মধ্যপ্ৰদেশ","পশ্চিমবন"],"answer":"A","explanation":"সঠিক উত্তর: A. উত্তরাখণ্ড","kind":"EVS","level":"EASY"},{"orig":2,"id":2,"text":"কোন ভিটামিনের অভাবে রিকেট (Rickets) রোগ হয়?","options":["Vitamin A","Vitamin B","Vitamin C","Vitamin D"],"answer":"D","explanation":"সঠিক উত্তর: D. Vitamin D","kind":"EVS","level":"EASY"},{"orig":3,"id":3,"text":"দূষিত জল পানের ফলে নিচের কোন রোগটি ছড়ায়?","options":["ম্যালেরিয়া","ডেসগ","কলেরা (Cholera)","স্কার্ভি"],"answer":"C","explanation":"সঠিক উত্তর: C. কলেরা (Cholera)","kind":"EVS","level":"EASY"},{"orig":4,"id":4,"text":"হাতির পাল (Herd of Elephants) সম্পর্কে কোন তথ্যটি সঠিক?","options":["পালে শুধু পুরুষ হাতি থাকে","সবচেয়ে বয়স্ক মাদি হাতি (০1dest female) পালের নেতৃত্ব দেয়","পালে কোনো বাচ্চা থাকে না","পুরুষ হাতিরা সারাজীবন পালেই থাকে"],"answer":"B","explanation":"সঠিক উত্তর: B. সবচেয়ে বয়স্ক মাদি হাতি (০1dest female) পালের নেতৃত্ব দেয়","kind":"EVS","level":"EASY"},{"orig":5,"id":5,"text":"সাপের দাত (Fangs) সম্পর্কে কোনটি সঠিক?","options":["সাপের দাঁত খাবার চিবানোর জন্য ব্যবহৃত হয়","বিষাক্ত সাপের দুটি ফাঁপা দাত থাকে যার মাধ্যমে বিষ ঢেলে দেয়","সাপের কোনো দাত থাকে না","সাপ মিষ্টি স্বাদ বুঝতে পারে"],"answer":"B","explanation":"সঠিক উত্তর: B. বিষাক্ত সাপের দুটি ফাঁপা দাত থাকে যার মাধ্যমে বিষ ঢেলে দেয়","kind":"EVS","level":"EASY"},{"orig":6,"id":6,"text":"'পোঙ্গল' (Pongal) ফসল তোলার উৎসবটি মূলত কোন রাজ্যে পালিত হয়?","options":["কেরালা","তামিলনাড়ু","পাঞ্জাব","অসম"],"answer":"B","explanation":"সঠিক উত্তর: B. তামিলনাড়ু","kind":"EVS","level":"EASY"},{"orig":7,"id":7,"text":"ভারতের মানচিত্রে দিল্লির সাপেক্ষে ভোপাল (মধ্যপ্ৰদেশ) এবং গান্ধীনগর (গুজরাট) কোন দিকে অবস্থিত?","options":["যথাক্ৰমে দক্ষিণ এবং দক্ষিণ-পশ্চিম (South and South-west)","উত্তর এবং পূর্ব","দক্ষিণ এবং পূর্ব","উত্তর-পশ্চিম এবং দক্ষিণ"],"answer":"A","explanation":"সঠিক উত্তর: A. যথাক্ৰমে দক্ষিণ এবং দক্ষিণ-পশ্চিম (South and South-west)","kind":"EVS","level":"EASY"},{"orig":8,"id":8,"text":"ট্রেনের টিকিটে 'PNR' কথাটির পূর্ণরূপ কী?","options":["Passenger Name Record","Public National Railway","Passenger Number Reservation","Private Name Record"],"answer":"A","explanation":"সঠিক উত্তর: A. Passenger Name Record","kind":"EVS","level":"EASY"},{"orig":9,"id":9,"text":"একটি খাদ্যশৃঙ্খলে (Food Chain) সবুজ উদ্ভিদকে কী বলা হয়?","options":["খাদক (Consume)","উৎপাদক (Producer)","বিয়োজক (Decomposer)","মাংসাশী (Carnivore)"],"answer":"B","explanation":"সঠিক উত্তর: B. উৎপাদক (Producer)","kind":"EVS","level":"EASY"},{"orig":10,"id":10,"text":"পৃথিবীর সবচেয়ে বড় পরিযায়ী পাখি (Migratory bird) কোনটি ঘা ভারতে আসে?","options":["সাইবেরিয়ান ক্রেন (Siberian Crane)","পেলিকান","ইগল","কাক"],"answer":"A","explanation":"সঠিক উত্তর: A. সাইবেরিয়ান ক্রেন (Siberian Crane)","kind":"EVS","level":"EASY"},{"orig":11,"id":11,"text":"কুইনাইন (Quinine) ওষুধ কোন গাছের ছাল থেকে তৈরি হয়?","options":["নিম","ইউক্যালিপটাস","সিনকোনা (Cinchona)","তুলসী"],"answer":"C","explanation":"সঠিক উত্তর: C. সিনকোনা (Cinchona)","kind":"EVS","level":"EASY"},{"orig":12,"id":12,"text":"'সাইলেন্ট ভ্যালি' (Silent Valley) ভারতের কোন রাজ্য অবস্থিত?","options":["কেরালা","উত্তরাখণ্ড","কর্ণাটক","হিমাচল প্রদেশ"],"answer":"A","explanation":"সঠিক উত্তর: A. কেরালা","kind":"EVS","level":"EASY"},{"orig":13,"id":13,"text":"পরিবেশ সুরক্ষার জন্য '3R' (3R) বলতে কী বোঝায়?","options":["Read, Register, Recall","Reduce, Reuse, Recycle","Random, Reduce, Recall","Reduce, Rebuild, Restrict"],"answer":"B","explanation":"সঠিক উত্তর: B. Reduce, Reuse, Recycle","kind":"EVS","level":"EASY"},{"orig":14,"id":14,"text":"কোন গ্যাস গ্রিনহাউস এফেক্টের জন্য সবচেয়ে বেশি দায়ী?","options":["নাইট্রোজেন","কার্বন ডাইঅক্সাইড (CO2)","অক্সিজেন","হাইড্রোজেন"],"answer":"B","explanation":"সঠিক উত্তর: B. কার্বন ডাইঅক্সাইড (CO2)","kind":"EVS","level":"EASY"},{"orig":15,"id":15,"text":"ভারতের দীর্ঘতম নদী কোনটি?","options":["ব্রহ্মপুত্র","গোদাবরী","গঙ্গা (Ganga)","যমুনা"],"answer":"C","explanation":"সঠিক উত্তর: C. গঙ্গা (Ganga)","kind":"EVS","level":"EASY"},{"orig":16,"id":16,"text":"NCF 2005 অনুযায়ী, প্রথম ও দ্বিতীয় শ্রেণিতে (Class 1 & 2) EVS-এর কোনো পাঠ্যবই নেই কেন?","options":["শিশুরা বই পড়তে পারে না","পরিবেশের ধারণা ভাষা এবং গণিতের মাধ্যমে সমন্বিতভাবে (Integrated with Language and Math) শেখানো হয়","শিক্ষকদের পড়াতে সুবিধা হয়","বইয়ের দাম বেশি"],"answer":"B","explanation":"সঠিক উত্তর: B. পরিবেশের ধারণা ভাষা এবং গণিতের মাধ্যমে সমন্বিতভাবে (Integrated with Language and Math) শেখানো হয়","kind":"EVS","level":"MEDIUM"},{"orig":17,"id":17,"text":"EVS ক্লাসে 'Observation' (পর্যবেক্ষণ) এবং classification (শ্রেণিকরণ) হলো:","options":["প্রসেস স্কিল (Process 5K) বা প্রক্রিয়াগত দক্ষতা","মুখস্থ করার দক্ষতা","লেখার দরযক্ষতা","শোনার দক্ষতা"],"answer":"A","explanation":"সঠিক উত্তর: A. প্রসেস স্কিল (Process 5K) বা প্রক্রিয়াগত দক্ষতা","kind":"EVS","level":"MEDIUM"},{"orig":18,"id":18,"text":"EVS মূল্যায়নে 'Rating Scale'-এর কাজ কী?","options":["শিশুর ওজন মাপা","কোনো কাজ বা আচরণের মান একটি নির্দিষ্ট স্কেলে (যেমন: Excellent, Good, Average) মূল্যায়ন করা","স্কুলের দূরত্ব মাপা","পরীক্ষার সময় মাপা"],"answer":"B","explanation":"সঠিক উত্তর: B. কোনো কাজ বা আচরণের মান একটি নির্দিষ্ট স্কেলে (যেমন: Excellent, Good, Average) মূল্যায়ন করা","kind":"EVS","level":"MEDIUM"},{"orig":19,"id":19,"text":"পরিবেশ শিক্ষার ক্ষেত্রে 'Field Trip' (শিক্ষামূলক ভ্রমণ)-এর প্রধান উদ্দেশ্য কী হওয়া উচিত?","options":["পিকনিক করা","শিশুদের সরাসরি অভিজ্ঞতা (Direct Hands-on Experience) প্রদান করা","নতুন জামা পরা","ছবি তোলা"],"answer":"B","explanation":"সঠিক উত্তর: B. শিশুদের সরাসরি অভিজ্ঞতা (Direct Hands-on Experience) প্রদান করা","kind":"EVS","level":"MEDIUM"},{"orig":20,"id":20,"text":"EVS ক্লাসে শিক্ষক একটি গল্প বললেন যেখানে একটি শিশু জল বাঁচাতে শিখছে। এটি শিশুদের মধ্যে কী তৈরি করবে?","options":["জল সংরক্ষণ সম্পর্কে সচেতনতা ও দায়িত্ববোধ","জলের অপচয় করার অভ্যাস","শুধু গল্প শোনার আনন্দ","পরিবেশের প্রতি উদাসীনতা"],"answer":"A","explanation":"সঠিক উত্তর: A. জল সংরক্ষণ সম্পর্কে সচেতনতা ও দায়িত্ববোধ","kind":"EVS","level":"MEDIUM"},{"orig":21,"id":21,"text":"NCF 2005 EVS-কে বিজ্ঞান, সমাজবিজ্ঞান এবং পরিবেশ শিক্ষার একটি সমন্বিত রূপ (Integrated form) হিসেবে দেখেছে। কেন?","options":["শিশুদের সিলেবাস কমানোর জন্য","কারণ শিশুরা তাদের চারপাশের পরিবেশকে খণ্ডিতভাবে না দেখে সামগ্রিকভাবে (Holistic manner) দেখে","শিক্ষকের অভাবের জন্য","বইয়ের সংখ্যা কমানোর জন্য"],"answer":"B","explanation":"সঠিক উত্তর: B. কারণ শিশুরা তাদের চারপাশের পরিবেশকে খণ্ডিতভাবে না দেখে সামগ্রিকভাবে (Holistic manner) দেখে","kind":"EVS","level":"MEDIUM"},{"orig":22,"id":22,"text":"মানচিত্র পঠন (Mapping skills) শেখানোর সময়, কোন বিষয়টি প্রথমে শেখানো উচিত?","options":["লঘিষ্ঠ সাধারণ গুণিতক","আপেক্ষিক দিক এবং প্রতীক (Relative directions and Symbols)","দেশগুলোর নাম মুখস্থ করানো","পৃথিবীর বয়স"],"answer":"B","explanation":"সঠিক উত্তর: B. আপেক্ষিক দিক এবং প্রতীক (Relative directions and Symbols)","kind":"EVS","level":"MEDIUM"},{"orig":23,"id":23,"text":"EVS-এ ‘Community as a Resource\" (সম্পদ হিসেবে সম্প্রদায়) ব্যবহারের সবচেয়ে ভালো উদাহরণ কোনটি?","options":["কৃষিকাজ বোঝাতে স্থানীয় একজন কৃষককে ক্লাসে আমন্ত্রণ জানানো","ইন্টারনেট থেকে কৃষকের ছবি দেখানো","বই থেকে রিডিং পড়ানো","কৃষকের ওপর একটি প্রবন্ধ লিখতে বলা"],"answer":"A","explanation":"সঠিক উত্তর: A. কৃষিকাজ বোঝাতে স্থানীয় একজন কৃষককে ক্লাসে আমন্ত্রণ জানানো","kind":"EVS","level":"MEDIUM"},{"orig":24,"id":24,"text":"‘Experiential Learning' (অভিজ্ঞতামূলক শিখন) EVS-এ কেন গুরুত্বপূর্ণ?","options":["এটি সময় নষ্ট করে","এটি শিক্ষকের কাজ বাড়ায়","এটি শিখনকে বাস্তব এবং অর্থপূর্ণ করে তোলে","এটি শুধুমাত্র বিনোদন দেয়"],"answer":"C","explanation":"সঠিক উত্তর: C. এটি শিখনকে বাস্তব এবং অর্থপূর্ণ করে তোলে","kind":"EVS","level":"MEDIUM"},{"orig":25,"id":25,"text":"শ্রেণিকক্ষে লিঙ্গ বৈষম্য (Gender Stereotypes) ভাঙতে Ev শিক্ষক কী করবেন?","options":["ছেলেদের কঠিন কাজ এবং মেয়েদের সহজ কাজ দেবেন","মহিলা অটোচালক বা পুরুষ নার্স-এর মতো উদাহরণ আলোচনা করবেন","বিষয়টি এড়িয়ে যাবেন","কেবল বইয়ের কথা বলবেন"],"answer":"B","explanation":"সঠিক উত্তর: B. মহিলা অটোচালক বা পুরুষ নার্স-এর মতো উদাহরণ আলোচনা করবেন","kind":"EVS","level":"MEDIUM"},{"orig":26,"id":26,"text":"EVS প্রোজেক্ট মূল্যায়নের জন্য কোনটি একটি ভালো কৌশল?","options":["কেবল লিখিত পরীক্ষা","রুব্রিক্ (২॥০i০5) ব্যবহার করে বিভিন্ন দিকের (যেমন: প্রেজেন্টেশন, তথ্য সংগ্রহ) মূল্যায়ন করা","আন্দাজে নম্বর দেওয়া","যিনি সুন্দর লিখেছেন তাকে বেশি নম্বর দেওয়া"],"answer":"B","explanation":"সঠিক উত্তর: B. রুব্রিক্ (২॥০i০5) ব্যবহার করে বিভিন্ন দিকের (যেমন: প্রেজেন্টেশন, তথ্য সংগ্রহ) মূল্যায়ন করা","kind":"EVS","level":"MEDIUM"},{"orig":27,"id":27,"text":"পঞ্চম শ্রেণির Ev বইয়ের অধ্যায়গুলিতে ঞতিহাসিক স্থান বা মিউজিয়ামের কথা বলা হয়েছে কেন?","options":["অতীত সম্পর্কে কৌতূহল এবং ঞতিহাসিক প্রমাণ বোঝার য্ষমতা বাড়াতে","মুখস্থ করার জন্য","পরীক্ষার প্রশ্ন কঠিন করতে","বইয়ের পাতা বাড়াতে"],"answer":"A","explanation":"সঠিক উত্তর: A. অতীত সম্পর্কে কৌতূহল এবং ঞতিহাসিক প্রমাণ বোঝার য্ষমতা বাড়াতে","kind":"EVS","level":"MEDIUM"},{"orig":28,"id":28,"text":"একটি শিশু প্রশ্ন করল, \"গাছ কি আমাদের মতো শ্বাস নেয়?\" শিক্ষকের কী করা উচিত?","options":["তাকে চুপ করে বসতে বলা","বিজ্ঞান বই থেকে উত্তর মুখস্থ করতে বলা","একটি সাধারণ পরীক্ষার (যেমন: প্লাষ্টিক ব্যাগে পাতা বেঁধে রাখা) মাধ্যমে তাকে নিজেই উত্তর খুঁজে পেতে সাহায্য করা","উত্তরটি এড়িয়ে যাওয়া"],"answer":"C","explanation":"সঠিক উত্তর: C. একটি সাধারণ পরীক্ষার (যেমন: প্লাষ্টিক ব্যাগে পাতা বেঁধে রাখা) মাধ্যমে তাকে নিজেই উত্তর খুঁজে পেতে সাহায্য করা","kind":"EVS","level":"MEDIUM"},{"orig":29,"id":29,"text":"EVS-এর 'Shelter' (আশ্রয়/বাসস্থান) থিমটি পড়ানোর সময় কোন পদ্ধতিটি সবচেয়ে কার্যকরী?","options":["বোর্ডে বিভিন্ন বাড়ির ছবি আঁকা","শিক্ষার্থীদের তাদের আশেপাশের বিভিন্ন ধরনের বাড়ি পর্যবেক্ষণ করে তালিকা তৈরি করতে বলা","শুধু লেকচার দেওয়া","মুখস্থ করতে বলা"],"answer":"B","explanation":"সঠিক উত্তর: B. শিক্ষার্থীদের তাদের আশেপাশের বিভিন্ন ধরনের বাড়ি পর্যবেক্ষণ করে তালিকা তৈরি করতে বলা","kind":"EVS","level":"MEDIUM"},{"orig":30,"id":30,"text":"EVS ক্লাসে স্থানীয় ভাষা এবং সংস্কৃতির (Local Language and Culture) ব্যবহার শিক্ষণকে:","options":["কঠিন করে তোলে","আনন্দদায়ক এবং প্রাসঙ্গিক (Relevant) করে তোলে","বাধাগ্রস্ত করে","অর্থহীন করে তোলে"],"answer":"B","explanation":"সঠিক উত্তর: B. আনন্দদায়ক এবং প্রাসঙ্গিক (Relevant) করে তোলে","kind":"EVS","level":"MEDIUM"},{"orig":31,"id":31,"text":"কোন পাখি ক্যাকটাস বা মেহেন্দি গাছের ঝোপের মধ্যে বাসা তৈরি করে?","options":["টুনটুনি (Tailorbi৷৭)","কাঠঠোকরা","ঘূঘু (০০ve)","কোকিল"],"answer":"A","explanation":"সঠিক উত্তর: A. টুনটুনি (Tailorbi৷৭)","kind":"EVS","level":"MEDIUM"},{"orig":32,"id":32,"text":"বটগাছের (Banyan tree) ডাল থেকে যে শিকড়গুলো মাটিতে নেমে আসে, তাকে কী বলে?","options":["শ্বাসমূল","ঠেসমূল (Prop roots)","পরাশ্রয়ী মূল","মূলরোম"],"answer":"B","explanation":"সঠিক উত্তর: B. ঠেসমূল (Prop roots)","kind":"EVS","level":"MEDIUM"},{"orig":33,"id":33,"text":"শরীরে আয়রন (1৮০৷)-এর ঘাটতি হলে কোন রোগ হয়?","options":["স্কার্ভি","অ্যানিমিয়া (॥॥e৷i৭) বা রক্তাল্পতা","বেরি-বেরি","রিকেট"],"answer":"B","explanation":"সঠিক উত্তর: B. অ্যানিমিয়া (॥॥e৷i৭) বা রক্তাল্পতা","kind":"EVS","level":"MEDIUM"},{"orig":34,"id":34,"text":"দুধকে জীবাণুমুক্ত করে দীর্ঘদিন ভালো রাখার পদ্ধতিকে কী বলা হয়?","options":["সালোকসংশ্লেষ","পাস্তুরাইজেশন (Pasteurization)","গাঁজন (Fermentation)","যনীভবন"],"answer":"B","explanation":"সঠিক উত্তর: B. পাস্তুরাইজেশন (Pasteurization)","kind":"EVS","level":"MEDIUM"},{"orig":35,"id":35,"text":"বৈশাখী’ (৪5a) উৎসব প্রধানত কোন রাজ্যের সাথে যুক্ত?","options":["কেরালা","অসম","পাঞ্জাব","পশ্চিমবঙ্গ"],"answer":"C","explanation":"সঠিক উত্তর: C. পাঞ্জাব","kind":"EVS","level":"MEDIUM"},{"orig":36,"id":36,"text":"লাদাখের (Ladakh) বাড়িগুলি সাধারণত কেমন হয়?","options":["বাশের তৈরি এবং মাটি থেকে উঁচুতে","পাথর বা কাঠের তৈরি, দোতলা, যার নিচতলা পশুদের জন্য ব্যবহৃত হয়","ইটের তৈরি বহুতল বাড়ি","বৃক্ষের তৈরি ইগলূ"],"answer":"B","explanation":"সঠিক উত্তর: B. পাথর বা কাঠের তৈরি, দোতলা, যার নিচতলা পশুদের জন্য ব্যবহৃত হয়","kind":"EVS","level":"MEDIUM"},{"orig":37,"id":37,"text":"'Dead Sea' বা মৃত সাগর কিসের জন্য বিখ্যাত?","options":["এখানে কোনো জল নেই","এর জল অত্যন্ত লবণাক্ত হওয়ায় মানুষ জলে ডোবে না, ভেসে থাকে","এর জল খুব মিষ্টি","এখানে অনেক কুমির থাকে"],"answer":"B","explanation":"সঠিক উত্তর: B. এর জল অত্যন্ত লবণাক্ত হওয়ায় মানুষ জলে ডোবে না, ভেসে থাকে","kind":"EVS","level":"MEDIUM"},{"orig":38,"id":38,"text":"মহাকাশে যাওয়া প্রথম ভারতীয় মহাকাশচারী কে?","options":["কল্লুনা চাওলা","ইউরি গ্যাগারিন","রাকেশ শর্মা (Rakesh Sharm)","নীল আর্মস্থং"],"answer":"C","explanation":"সঠিক উত্তর: C. রাকেশ শর্মা (Rakesh Sharm)","kind":"EVS","level":"MEDIUM"},{"orig":39,"id":39,"text":"ভারতের মানচিত্রে বঙ্গোপসাগরের (Ba) ০f Ben9৭৷) তীরবর্তী একটি রাজ্য হলো:","options":["গুজরাট","মহারাষ্ট্র","কেরালা","ওড়িশা (0disha)"],"answer":"D","explanation":"সঠিক উত্তর: D. ওড়িশা (0disha)","kind":"EVS","level":"MEDIUM"},{"orig":40,"id":40,"text":"একটি বাস্তুতন্তরে শক্তি প্রবাহের 10 শতাংশের সূত্র' (10% Law) কে প্রবর্তন করেন?","options":["লিন্ডেম্যান (Lindeman)","চালস ডারউইন","গ্রেগর মেন্ডেল","লুই পাস্তুর"],"answer":"A","explanation":"সঠিক উত্তর: A. লিন্ডেম্যান (Lindeman)","kind":"EVS","level":"MEDIUM"},{"orig":41,"id":41,"text":"জাপানে পারদ (Mercury) দূষণের ফলে কোন ভয়াবহ রোগটি হয়েছিল?","options":["ইতাই ইতাই","মিনামাটা (Minamata)","ব্ল্যাকফুট ডিজিজ","ডিসলেক্রযিয়া"],"answer":"B","explanation":"সঠিক উত্তর: B. মিনামাটা (Minamata)","kind":"EVS","level":"MEDIUM"},{"orig":42,"id":42,"text":"কাজিরাঙা ন্যাশনাল পার্ক (Kaziranga National Park) মূলত কোন প্রাণীর জন্য বিখ্যাত?","options":["বাঘ","একশূঙ্গ গণ্ডার (ne-horned Rhinoceros)","সিংহ","হাতি"],"answer":"B","explanation":"সঠিক উত্তর: B. একশূঙ্গ গণ্ডার (ne-horned Rhinoceros)","kind":"EVS","level":"MEDIUM"},{"orig":43,"id":43,"text":"ভিটামিন A-এর অভাবে চোখের কোন রোগ হয়?","options":["রাতকানা (Night blindness)","#কোমা","ছানি","মায়োপিয়া"],"answer":"A","explanation":"সঠিক উত্তর: A. রাতকানা (Night blindness)","kind":"EVS","level":"MEDIUM"},{"orig":44,"id":44,"text":"বিশ্ব জল দিবস (World Water Day) কবে পালিত হয়?","options":["5 June","22 March","21 June","1 December"],"answer":"B","explanation":"সঠিক উত্তর: B. 22 March","kind":"EVS","level":"MEDIUM"},{"orig":45,"id":45,"text":"বাষ্পীভবন (Evaporation) সবচেয়ে দুত হয় যখন:","options":["তাপমাত্রা বাড়ে এবং পৃষ্ঠতলের ফ্রক ত্রফল বাড়ে","তাপমাত্রা কমে","বাতাস বন্ধ থাকে","আদ্রতা বেশি থাবে \" (gw)  ” C"],"answer":"A","explanation":"সঠিক উত্তর: A. তাপমাত্রা বাড়ে এবং পৃষ্ঠতলের ফ্রক ত্রফল বাড়ে","kind":"EVS","level":"MEDIUM"},{"orig":46,"id":46,"text":"NCF 2005 অনুযায়ী, EVS সিলেবাসের ৬টি মূল থিমের মধ্যে কোনটি পড়ে?","options":["Things we make and do (আমরা যা তৈরি করি এবং করি)","Physics","History","Geography"],"answer":"A","explanation":"সঠিক উত্তর: A. Things we make and do (আমরা যা তৈরি করি এবং করি)","kind":"EVS","level":"MEDIUM"},{"orig":47,"id":47,"text":"EVS ক্লাসে শিক্ষক যখন শিশুদের গল্প বা কবিতা শোনান, তার মূল উদ্দেশ্য কী?","options":["শিশুদের ঘুম পাড়ানো","বিষয়টিকে আনন্দদায়ক করা এবং শিশুদের কল্পনাশক্তি ও স্থানীয় প্রেক্কাপটের সাথে সংযোগ স্থাপন করা","ব্যাকরণ শেখানো","সময় কাটানো"],"answer":"B","explanation":"সঠিক উত্তর: B. বিষয়টিকে আনন্দদায়ক করা এবং শিশুদের কল্পনাশক্তি ও স্থানীয় প্রেক্কাপটের সাথে সংযোগ স্থাপন করা","kind":"EVS","level":"MEDIUM"},{"orig":48,"id":48,"text":"EVS মূল্যায়নে শিক্ষকের ‘Observation skill' (পর্যবেক্ষণ দক্ষতা) কেন জরুরি?","options":["কে দুষ্টুমি করছে তা ধরার জন্য","দলগত কাজে এবং প্রজেক্টে শিশুরা কীভাবে অংশগ্রহণ করছে তা সূক্ষ্মভাবে রেকর্ড করার জন্য","শাস্তি দেওয়ার জন্য","নম্বর কাটার জন্য"],"answer":"B","explanation":"সঠিক উত্তর: B. দলগত কাজে এবং প্রজেক্টে শিশুরা কীভাবে অংশগ্রহণ করছে তা সূক্ষ্মভাবে রেকর্ড করার জন্য","kind":"EVS","level":"MEDIUM"},{"orig":49,"id":49,"text":"পরিবেশ শিক্ষায় 'Field Trip' (শিক্ষামূলক ভ্রমণ) আয়োজনের প্রথম শর্ত কী?","options":["অনেক টাকা সংগ্রহ করা","ভ্রমণের একটি সূনি্দিষ্ট শিক্ষামূলক উদ্দেশ্য (Specific educational objective) থাকা","দামি বাস তাড়া করা","ভালো খাবার নেওয়া"],"answer":"B","explanation":"সঠিক উত্তর: B. ভ্রমণের একটি সূনি্দিষ্ট শিক্ষামূলক উদ্দেশ্য (Specific educational objective) থাকা","kind":"EVS","level":"MEDIUM"},{"orig":50,"id":50,"text":"EVS ক্লাসে 'Experiment' (পরীরফা) করার ফলে শিশুদের মধ্যে কী গড়ে ওঠে?","options":["বৈজ্ঞানিক মেজাজ (Scientific ₹e৷৷Per) এবং প্রমাণ খোঁজার মানসিকতা","অন্ধবিশ্বাস","মুখস্থ করার প্রবণতা","ভয়"],"answer":"A","explanation":"সঠিক উত্তর: A. বৈজ্ঞানিক মেজাজ (Scientific ₹e৷৷Per) এবং প্রমাণ খোঁজার মানসিকতা","kind":"EVS","level":"MEDIUM"},{"orig":51,"id":51,"text":"ম্যাপ (৭০) পড়ার দক্ষতার মধ্যে কোনটি অন্তর্ভুক্ত নয়?","options":["দিক নির্ণয় করা","দূরত্ব ও স্কেলের ধারণা","প্রতীক চেনা","সুন্দর হাতের লেখা (Handwriting)"],"answer":"D","explanation":"সঠিক উত্তর: D. সুন্দর হাতের লেখা (Handwriting)","kind":"EVS","level":"MEDIUM"},{"orig":52,"id":52,"text":"লিঙ্গ বৈষম্য বা জাতপাতের মতো সংবেদনশীল বিষয় ($ensiti॥e 55Ue$5) ক্লাসে উঠলে EVS শিক্ষকের কী করা উচিত?","options":["বিষয়টি এড়িয়ে যাওয়া","শিশুদের ধমক দেওয়া","সংবেদনশীলতার সাথে উন্মুক্ত আলোচনার (open discussion) সুযোগ দেওয়া","কেবল বই পড়ে শোনানো"],"answer":"C","explanation":"সঠিক উত্তর: C. সংবেদনশীলতার সাথে উন্মুক্ত আলোচনার (open discussion) সুযোগ দেওয়া","kind":"EVS","level":"MEDIUM"},{"orig":53,"id":53,"text":"EVS শিক্ষায় 'Community' (সম্প্রদায়) কীভাবে সম্পদ হিসেবে কাজ করে?","options":["তারা স্কুলে টাকা দেয়","স্থানীয় অভিজ্ঞ ব্যক্তিরা (যেমন চাষি, কুমোর) শিশুদের বাস্তব জীবনের জ্ঞান সরাসরি প্রদান করতে পারে","তারা শিক্ষকের কাজ করে দেয়","তারা খাতা দেখে দেয়"],"answer":"B","explanation":"সঠিক উত্তর: B. স্থানীয় অভিজ্ঞ ব্যক্তিরা (যেমন চাষি, কুমোর) শিশুদের বাস্তব জীবনের জ্ঞান সরাসরি প্রদান করতে পারে","kind":"EVS","level":"MEDIUM"},{"orig":54,"id":54,"text":"CCE (Continuous and Comprehensive Evaluation) EVS-এ কীভাবে প্রয়োগ করা হয়?","options":["কেবল বাধিক পরীঃক্কার মাধ্যমে","প্রজেক্ট, কুইজ, পোর্টফোলিও, এবং দৈনন্দিন পর্যবেক্ষণের মাধ্যমে সারা বছর ধরে","কেবল ডিকটেশনের মাধ্যমে","কেবল মুখস্থ পরীক্ষার মাধ্যমে"],"answer":"B","explanation":"সঠিক উত্তর: B. প্রজেক্ট, কুইজ, পোর্টফোলিও, এবং দৈনন্দিন পর্যবেক্ষণের মাধ্যমে সারা বছর ধরে","kind":"EVS","level":"MEDIUM"},{"orig":55,"id":55,"text":"প্রথম ও দ্বিতীয় শ্রেণিতে EVS-এর ধারণাগুলি কীভাবে শেখানো হয়?","options":["আলাদা EVS বইয়ের মাধ্যমে","ভাষা ও গণিতের সঙ্গে সমন্বিতভাবে","শুধুমাত্র পরীক্ষার মাধ্যমে","শুধুমাত্র মুখস্থ করিয়ে"],"answer":"B","explanation":"সঠিক উত্তর: B. ভাষা ও গণিতের সঙ্গে সমন্বিতভাবে","kind":"EVS","level":"MEDIUM"},{"orig":56,"id":56,"text":"EVS শিক্ষায় \"Local Knowledge\" ব্যবহার করার প্রধান সুবিধা কী?","options":["শিশুদের বাস্তব জীবনের অভিজ্ঞতার সঙ্গে শেখার সংযোগ তৈরি হয়","সিলেবাস বাদ দেওয়া যায়","পরীক্ষায় কম প্রশ্ন আসে","বইয়ের প্রয়োজন হয় না"],"answer":"A","explanation":"সঠিক উত্তর: A. শিশুদের বাস্তব জীবনের অভিজ্ঞতার সঙ্গে শেখার সংযোগ তৈরি হয়","kind":"EVS","level":"MEDIUM"},{"orig":57,"id":57,"text":"খাদ্যশৃঙ্খলে শক্তির প্রবাহ সাধারণত কোন দিক থেকে কোন দিকে যায়?","options":["খাদক → উৎপাদক","উৎপাদক → খাদক","বিয়োজক → উৎপাদক","খাদক → সূর্য"],"answer":"B","explanation":"সঠিক উত্তর: B. উৎপাদক → খাদক","kind":"EVS","level":"MEDIUM"},{"orig":58,"id":58,"text":"জীব ও জড় উপাদানের পারস্পরিক সম্পর্ক নিয়ে কোন বিষয়টি আলোচনা করে?","options":["বাস্তুতন্ত্র (Ecosystem)","ব্যাকরণ","জ্যামিতি","ইতিহাস"],"answer":"A","explanation":"সঠিক উত্তর: A. বাস্তুতন্ত্র (Ecosystem)","kind":"EVS","level":"MEDIUM"},{"orig":59,"id":59,"text":"জীববৈচিত্র্য (Biodiversity) সংরক্ষণের একটি গুরুত্বপূর্ণ উপায় কোনটি?","options":["বন উজাড় করা","প্রাকৃতিক আবাসস্থল সংরক্ষণ করা","দূষণ বাড়ানো","অতিরিক্ত শিকার করা"],"answer":"B","explanation":"সঠিক উত্তর: B. প্রাকৃতিক আবাসস্থল সংরক্ষণ করা","kind":"EVS","level":"MEDIUM"},{"orig":60,"id":60,"text":"পরিবেশ দূষণ কমানোর সবচেয়ে কার্যকর উপায়গুলির একটি হলো:","options":["প্লাস্টিকের ব্যবহার বাড়ানো","বর্জ্য কমানো, পুনর্ব্যবহার ও পুনঃচক্রায়ন","বেশি জ্বালানি পোড়ানো","বন কাটা"],"answer":"B","explanation":"সঠিক উত্তর: B. বর্জ্য কমানো, পুনর্ব্যবহার ও পুনঃচক্রায়ন","kind":"EVS","level":"MEDIUM"},{"orig":61,"id":61,"text":"কোন পাখি নিজের বাসা তৈরি করে না, বরং কাকের বাসায় ডিম পাড়ে?","options":["কোকিল (Cuckoo)","পেঁচা","শালিক","চড়ুই"],"answer":"A","explanation":"সঠিক উত্তর: A. কোকিল (Cuckoo)","kind":"EVS","level":"EASY"},{"orig":62,"id":62,"text":"‘Pitcher plant' (কলসপত্রী) হলো একটি:","options":["পরজীবী উদ্ভিদ","পতঙ্গভুক উদ্ভিদ (Insectivorous plant)","মরুভূমির উদ্ভিদ","জলজ উদ্ভিদ"],"answer":"B","explanation":"সঠিক উত্তর: B. পতঙ্গভুক উদ্ভিদ (Insectivorous plant)","kind":"EVS","level":"EASY"},{"orig":63,"id":63,"text":"‘Desert Oak' (মরু ওক) গাছ কোথায় পাওয়া যায়?","options":["রাজস্থান","আবু ধাবি","অস্ট্রেলিয়া","সাহারা মরুভূমি"],"answer":"C","explanation":"সঠিক উত্তর: C. অস্ট্রেলিয়া","kind":"EVS","level":"EASY"},{"orig":64,"id":64,"text":"ম্যালেরিয়া রোগ ছড়ায় কোন মশা?","options":["স্ত্রী অ্যানোফিলিস (Female Anopheles)","কিউলেক্স","এডিস","পুরুষ অ্যানোফিলিস"],"answer":"A","explanation":"সঠিক উত্তর: A. স্ত্রী অ্যানোফিলিস (Female Anopheles)","kind":"EVS","level":"EASY"},{"orig":65,"id":65,"text":"ডেঙ্গু রোগ ছড়ায় কোন মশা?","options":["Anopheles মশা","Aedes aegypti মশা","Culex মশা","ঘরের মাছি"],"answer":"B","explanation":"সঠিক উত্তর: B. Aedes aegypti মশা","kind":"EVS","level":"EASY"},{"orig":66,"id":66,"text":"ম্যালেরিয়ার জীবাণু আবিষ্কারের জন্য কে নোবেল পুরস্কার পান?","options":["লুই পাস্তুর","রোনাল্ড রস (Ronald Ross)","আলেকজান্ডার ফ্লেমিং","এডওয়ার্ড জেনার"],"answer":"B","explanation":"সঠিক উত্তর: B. রোনাল্ড রস (Ronald Ross)","kind":"EVS","level":"EASY"},{"orig":67,"id":67,"text":"কোন প্রাণীকে 'Ship of the Desert' বলা হয়?","options":["ঘোড়া","উট","হাতি","গাধা"],"answer":"B","explanation":"সঠিক উত্তর: B. উট","kind":"EVS","level":"EASY"},{"orig":68,"id":68,"text":"কোন ভিটামিনের অভাবে স্কার্ভি হয়?","options":["Vitamin A","Vitamin B","Vitamin C","Vitamin D"],"answer":"C","explanation":"সঠিক উত্তর: C. Vitamin C","kind":"EVS","level":"EASY"},{"orig":69,"id":69,"text":"শরীরে আয়োডিনের অভাবে কোন রোগ হয়?","options":["রিকেট","গয়টার","স্কার্ভি","অ্যানিমিয়া"],"answer":"B","explanation":"সঠিক উত্তর: B. গয়টার","kind":"EVS","level":"EASY"},{"orig":70,"id":70,"text":"রক্তে হিমোগ্লোবিন তৈরিতে কোন খনিজটি গুরুত্বপূর্ণ?","options":["আয়রন","ক্যালসিয়াম","সোডিয়াম","পটাশিয়াম"],"answer":"A","explanation":"সঠিক উত্তর: A. আয়রন","kind":"EVS","level":"EASY"},{"orig":71,"id":71,"text":"কোন রোগটি মশার মাধ্যমে ছড়ায়?","options":["ম্যালেরিয়া","স্কার্ভি","রিকেট","ডায়াবেটিস"],"answer":"A","explanation":"সঠিক উত্তর: A. ম্যালেরিয়া","kind":"EVS","level":"EASY"},{"orig":72,"id":72,"text":"গাছের খাদ্য তৈরির প্রক্রিয়াকে কী বলে?","options":["শ্বসন","সালোকসংশ্লেষ","পরাগায়ন","বাষ্পীভবন"],"answer":"B","explanation":"সঠিক উত্তর: B. সালোকসংশ্লেষ","kind":"EVS","level":"EASY"},{"orig":73,"id":73,"text":"সালোকসংশ্লেষে কোন গ্যাস ব্যবহৃত হয়?","options":["অক্সিজেন","নাইট্রোজেন","কার্বন ডাইঅক্সাইড","হাইড্রোজেন"],"answer":"C","explanation":"সঠিক উত্তর: C. কার্বন ডাইঅক্সাইড","kind":"EVS","level":"EASY"},{"orig":74,"id":74,"text":"উদ্ভিদের সবুজ রঙের জন্য কোন পদার্থ দায়ী?","options":["হিমোগ্লোবিন","ক্লোরোফিল","মেলানিন","ক্যারোটিন"],"answer":"B","explanation":"সঠিক উত্তর: B. ক্লোরোফিল","kind":"EVS","level":"EASY"},{"orig":75,"id":75,"text":"খাদ্যশৃঙ্খলের প্রথম স্তরে সাধারণত থাকে:","options":["উৎপাদক","প্রাথমিক খাদক","দ্বিতীয় স্তরের খাদক","বিয়োজক"],"answer":"A","explanation":"সঠিক উত্তর: A. উৎপাদক","kind":"EVS","level":"EASY"},{"orig":76,"id":76,"text":"NCF 2005 অনুযায়ী প্রাথমিক স্তরে EVS-এর কয়টি মূল থিম আছে?","options":["4","5","6","7"],"answer":"C","explanation":"সঠিক উত্তর: C. 6","kind":"EVS","level":"MEDIUM"},{"orig":77,"id":77,"text":"EVS-এর প্রধান উদ্দেশ্য কী?","options":["শুধুমাত্র তথ্য মুখস্থ করানো","শিশুকে তার প্রাকৃতিক ও সামাজিক পরিবেশ সম্পর্কে সচেতন ও অনুসন্ধিৎসু করে তোলা","শুধু পরীক্ষার প্রস্তুতি","শুধু বিজ্ঞান শেখানো"],"answer":"B","explanation":"সঠিক উত্তর: B. শিশুকে তার প্রাকৃতিক ও সামাজিক পরিবেশ সম্পর্কে সচেতন ও অনুসন্ধিৎসু করে তোলা","kind":"EVS","level":"MEDIUM"},{"orig":78,"id":78,"text":"শিশুর পরিবেশ সম্পর্কে ধারণা গঠনে কোনটি বেশি কার্যকর?","options":["শুধুমাত্র বক্তৃতা","প্রত্যক্ষ অভিজ্ঞতা","শুধুমাত্র মুখস্থ করা","শুধুমাত্র বই পড়া"],"answer":"B","explanation":"সঠিক উত্তর: B. প্রত্যক্ষ অভিজ্ঞতা","kind":"EVS","level":"MEDIUM"},{"orig":79,"id":79,"text":"'Learning by Doing' বলতে কী বোঝায়?","options":["শুধু বই পড়া","কাজের মাধ্যমে শেখা","শুধু শুনে শেখা","শুধু পরীক্ষা দেওয়া"],"answer":"B","explanation":"সঠিক উত্তর: B. কাজের মাধ্যমে শেখা","kind":"EVS","level":"MEDIUM"},{"orig":80,"id":80,"text":"EVS শিক্ষায় প্রকল্প পদ্ধতির প্রধান সুবিধা:","options":["শিশুর সক্রিয় অংশগ্রহণ বাড়ায়","মুখস্থ বাড়ায়","শিক্ষককে নিষ্ক্রিয় করে","পরীক্ষা কমায়"],"answer":"A","explanation":"সঠিক উত্তর: A. শিশুর সক্রিয় অংশগ্রহণ বাড়ায়","kind":"EVS","level":"MEDIUM"},{"orig":81,"id":81,"text":"EVS-এ শিশুর পূর্বজ্ঞানকে:","options":["উপেক্ষা করা উচিত","শেখার ভিত্তি হিসেবে ব্যবহার করা উচিত","ভুল বলে ধরে নেওয়া উচিত","শাস্তি দেওয়া উচিত"],"answer":"B","explanation":"সঠিক উত্তর: B. শেখার ভিত্তি হিসেবে ব্যবহার করা উচিত","kind":"EVS","level":"MEDIUM"},{"orig":82,"id":82,"text":"EVS শিক্ষায় প্রশ্ন করার উদ্দেশ্য:","options":["শিশুকে ভয় দেখানো","চিন্তন ও অনুসন্ধান বাড়ানো","সময় নষ্ট করা","শাস্তি দেওয়া"],"answer":"B","explanation":"সঠিক উত্তর: B. চিন্তন ও অনুসন্ধান বাড়ানো","kind":"EVS","level":"MEDIUM"},{"orig":83,"id":83,"text":"EVS-এ 'Observation' বলতে বোঝায়:","options":["মুখস্থ করা","মনোযোগ দিয়ে দেখা ও তথ্য সংগ্রহ করা","লেখা","শোনা"],"answer":"B","explanation":"সঠিক উত্তর: B. মনোযোগ দিয়ে দেখা ও তথ্য সংগ্রহ করা","kind":"EVS","level":"MEDIUM"},{"orig":84,"id":84,"text":"'Classification' বলতে কী বোঝায়?","options":["তথ্য বা বস্তুকে নির্দিষ্ট বৈশিষ্ট্যের ভিত্তিতে শ্রেণিবদ্ধ করা","তথ্য মুছে ফেলা","শুধু নাম মুখস্থ করা","ছবি আঁকা"],"answer":"A","explanation":"সঠিক উত্তর: A. তথ্য বা বস্তুকে নির্দিষ্ট বৈশিষ্ট্যের ভিত্তিতে শ্রেণিবদ্ধ করা","kind":"EVS","level":"MEDIUM"},{"orig":85,"id":85,"text":"EVS-এ স্থানীয় পরিবেশ ব্যবহার করার উদ্দেশ্য:","options":["শিশুর অভিজ্ঞতার সঙ্গে শিক্ষার সম্পর্ক স্থাপন করা","বই বাদ দেওয়া","পরীক্ষা বন্ধ করা","সিলেবাস কমানো"],"answer":"A","explanation":"সঠিক উত্তর: A. শিশুর অভিজ্ঞতার সঙ্গে শিক্ষার সম্পর্ক স্থাপন করা","kind":"EVS","level":"MEDIUM"},{"orig":86,"id":86,"text":"'Field Visit' সবচেয়ে বেশি সাহায্য করে:","options":["প্রত্যক্ষ অভিজ্ঞতা অর্জনে","মুখস্থ করতে","শুধু বিনোদনে","পরীক্ষায় নম্বর পেতে"],"answer":"A","explanation":"সঠিক উত্তর: A. প্রত্যক্ষ অভিজ্ঞতা অর্জনে","kind":"EVS","level":"MEDIUM"},{"orig":87,"id":87,"text":"EVS-এ 'Discussion' পদ্ধতি শিশুর:","options":["সক্রিয় অংশগ্রহণ ও মত প্রকাশ বাড়ায়","কেবল মুখস্থ বাড়ায়","ভয় বাড়ায়","নিষ্ক্রিয়তা বাড়ায়"],"answer":"A","explanation":"সঠিক উত্তর: A. সক্রিয় অংশগ্রহণ ও মত প্রকাশ বাড়ায়","kind":"EVS","level":"MEDIUM"},{"orig":88,"id":88,"text":"পরিবেশের জৈব উপাদান হলো:","options":["জল","মাটি","উদ্ভিদ","বায়ু"],"answer":"C","explanation":"সঠিক উত্তর: C. উদ্ভিদ","kind":"EVS","level":"EASY"},{"orig":89,"id":89,"text":"পরিবেশের অজৈব উপাদান হলো:","options":["মানুষ","উদ্ভিদ","প্রাণী","জল"],"answer":"D","explanation":"সঠিক উত্তর: D. জল","kind":"EVS","level":"EASY"},{"orig":90,"id":90,"text":"খাদ্যজালের (Food Web) মূল বৈশিষ্ট্য:","options":["একটিমাত্র খাদ্যশৃঙ্খল","একাধিক খাদ্যশৃঙ্খলের পারস্পরিক সংযোগ","শুধু উৎপাদক থাকে","শুধু খাদক থাকে"],"answer":"B","explanation":"সঠিক উত্তর: B. একাধিক খাদ্যশৃঙ্খলের পারস্পরিক সংযোগ","kind":"EVS","level":"EASY"},{"orig":91,"id":91,"text":"জীবমণ্ডল (Biosphere) বলতে বোঝায়:","options":["শুধু বায়ুমণ্ডল","পৃথিবীর সেই অংশ যেখানে জীবন বিদ্যমান","শুধু জলভাগ","শুধু স্থলভাগ"],"answer":"B","explanation":"সঠিক উত্তর: B. পৃথিবীর সেই অংশ যেখানে জীবন বিদ্যমান","kind":"EVS","level":"EASY"},{"orig":92,"id":92,"text":"বায়ুদূষণের একটি প্রধান কারণ:","options":["বৃক্ষরোপণ","যানবাহনের ধোঁয়া","বৃষ্টিপাত","সূর্যালোক"],"answer":"B","explanation":"সঠিক উত্তর: B. যানবাহনের ধোঁয়া","kind":"EVS","level":"EASY"},{"orig":93,"id":93,"text":"জলদূষণের একটি প্রধান কারণ:","options":["শিল্পবর্জ্য","বৃক্ষরোপণ","বৃষ্টির জল","পরিষ্কার জল"],"answer":"A","explanation":"সঠিক উত্তর: A. শিল্পবর্জ্য","kind":"EVS","level":"EASY"},{"orig":94,"id":94,"text":"শব্দদূষণের প্রধান উৎস:","options":["পাখির ডাক","যানবাহন ও যন্ত্রপাতির অতিরিক্ত শব্দ","বৃষ্টি","বাতাস"],"answer":"B","explanation":"সঠিক উত্তর: B. যানবাহন ও যন্ত্রপাতির অতিরিক্ত শব্দ","kind":"EVS","level":"EASY"},{"orig":95,"id":95,"text":"অ্যাসিড বৃষ্টির প্রধান কারণ:","options":["সালফার ও নাইট্রোজেনের অক্সাইড","অক্সিজেন","হাইড্রোজেন","জলীয়বাষ্প"],"answer":"A","explanation":"সঠিক উত্তর: A. সালফার ও নাইট্রোজেনের অক্সাইড","kind":"EVS","level":"EASY"},{"orig":96,"id":96,"text":"ওজোন স্তর আমাদের রক্ষা করে:","options":["অতিবেগুনি রশ্মি থেকে","শব্দ থেকে","বৃষ্টির জল থেকে","ধুলো থেকে"],"answer":"A","explanation":"সঠিক উত্তর: A. অতিবেগুনি রশ্মি থেকে","kind":"EVS","level":"EASY"},{"orig":97,"id":97,"text":"গ্রিনহাউস গ্যাসের একটি উদাহরণ:","options":["কার্বন ডাইঅক্সাইড","অক্সিজেন","নাইট্রোজেন","হিলিয়াম"],"answer":"A","explanation":"সঠিক উত্তর: A. কার্বন ডাইঅক্সাইড","kind":"EVS","level":"EASY"},{"orig":98,"id":98,"text":"বিশ্ব পরিবেশ দিবস পালিত হয়:","options":["5 জুন","22 মার্চ","21 জুন","1 ডিসেম্বর"],"answer":"A","explanation":"সঠিক উত্তর: A. 5 জুন","kind":"EVS","level":"EASY"},{"orig":99,"id":99,"text":"বিশ্ব জল দিবস পালিত হয়:","options":["5 জুন","22 মার্চ","21 জুন","16 সেপ্টেম্বর"],"answer":"B","explanation":"সঠিক উত্তর: B. 22 মার্চ","kind":"EVS","level":"EASY"},{"orig":100,"id":100,"text":"আন্তর্জাতিক জীববৈচিত্র্য দিবস:","options":["22 মে","5 জুন","22 মার্চ","16 সেপ্টেম্বর"],"answer":"A","explanation":"সঠিক উত্তর: A. 22 মে","kind":"EVS","level":"EASY"},{"orig":101,"id":101,"text":"পুনর্ব্যবহারযোগ্য বর্জ্যের উদাহরণ:","options":["কাগজ","পচা খাবার","নোংরা ন্যাপকিন","চিকিৎসা বর্জ্য"],"answer":"A","explanation":"সঠিক উত্তর: A. কাগজ","kind":"EVS","level":"EASY"},{"orig":102,"id":102,"text":"জৈব বর্জ্য হলো:","options":["প্লাস্টিক","কাঁচ","সবজির খোসা","ধাতু"],"answer":"C","explanation":"সঠিক উত্তর: C. সবজির খোসা","kind":"EVS","level":"EASY"},{"orig":103,"id":103,"text":"কম্পোস্ট তৈরিতে ব্যবহৃত হয়:","options":["জৈব বর্জ্য","প্লাস্টিক","কাঁচ","লোহা"],"answer":"A","explanation":"সঠিক উত্তর: A. জৈব বর্জ্য","kind":"EVS","level":"EASY"},{"orig":104,"id":104,"text":"'Reduce' বলতে 3R-এর ক্ষেত্রে বোঝায়:","options":["ব্যবহার কমানো","পুনর্ব্যবহার","পুনঃচক্রায়ন","বর্জ্য পোড়ানো"],"answer":"A","explanation":"সঠিক উত্তর: A. ব্যবহার কমানো","kind":"EVS","level":"EASY"},{"orig":105,"id":105,"text":"'Reuse' বলতে বোঝায়:","options":["একই জিনিস পুনরায় ব্যবহার করা","জিনিস ফেলে দেওয়া","জিনিস পুড়িয়ে ফেলা","নতুন জিনিস কেনা"],"answer":"A","explanation":"সঠিক উত্তর: A. একই জিনিস পুনরায় ব্যবহার করা","kind":"EVS","level":"EASY"},{"orig":106,"id":106,"text":"'Recycle' বলতে বোঝায়:","options":["বর্জ্য থেকে নতুন ব্যবহারযোগ্য বস্তু তৈরি করা","বর্জ্য ফেলে দেওয়া","বর্জ্য পোড়ানো","বর্জ্য জমিয়ে রাখা"],"answer":"A","explanation":"সঠিক উত্তর: A. বর্জ্য থেকে নতুন ব্যবহারযোগ্য বস্তু তৈরি করা","kind":"EVS","level":"EASY"},{"orig":107,"id":107,"text":"বৃষ্টির জল সংরক্ষণকে বলা হয়:","options":["Rainwater Harvesting","Water Pollution","Soil Erosion","Deforestation"],"answer":"A","explanation":"সঠিক উত্তর: A. Rainwater Harvesting","kind":"EVS","level":"EASY"},{"orig":108,"id":108,"text":"মাটির ক্ষয়কে বলা হয়:","options":["Soil Erosion","Soil Formation","Irrigation","Filtration"],"answer":"A","explanation":"সঠিক উত্তর: A. Soil Erosion","kind":"EVS","level":"EASY"},{"orig":109,"id":109,"text":"বন উজাড়ের একটি ফল:","options":["জীববৈচিত্র্য হ্রাস","বৃষ্টিপাত বৃদ্ধি","মাটির উর্বরতা বৃদ্ধি","দূষণ হ্রাস"],"answer":"A","explanation":"সঠিক উত্তর: A. জীববৈচিত্র্য হ্রাস","kind":"EVS","level":"EASY"},{"orig":110,"id":110,"text":"বন সংরক্ষণের একটি উপায়:","options":["নির্বিচারে গাছ কাটা","বৃক্ষরোপণ","শিকার বাড়ানো","বন পোড়ানো"],"answer":"B","explanation":"সঠিক উত্তর: B. বৃক্ষরোপণ","kind":"EVS","level":"EASY"},{"orig":111,"id":111,"text":"খাদ্যশৃঙ্খলে উৎপাদক:","options":["সবুজ উদ্ভিদ","বাঘ","হরিণ","ব্যাকটেরিয়া"],"answer":"A","explanation":"সঠিক উত্তর: A. সবুজ উদ্ভিদ","kind":"EVS","level":"EASY"},{"orig":112,"id":112,"text":"প্রাথমিক খাদক সাধারণত:","options":["তৃণভোজী","মাংসাশী","বিয়োজক","সর্বভুক নয়"],"answer":"A","explanation":"সঠিক উত্তর: A. তৃণভোজী","kind":"EVS","level":"EASY"},{"orig":113,"id":113,"text":"বিয়োজকের উদাহরণ:","options":["ব্যাকটেরিয়া ও ছত্রাক","হরিণ","বাঘ","ঘাস"],"answer":"A","explanation":"সঠিক উত্তর: A. ব্যাকটেরিয়া ও ছত্রাক","kind":"EVS","level":"EASY"},{"orig":114,"id":114,"text":"বাস্তুতন্ত্রে শক্তির প্রধান উৎস:","options":["সূর্য","চাঁদ","মাটি","জল"],"answer":"A","explanation":"সঠিক উত্তর: A. সূর্য","kind":"EVS","level":"EASY"},{"orig":115,"id":115,"text":"জীববৈচিত্র্য বলতে বোঝায়:","options":["জীবের বৈচিত্র্য","শুধু উদ্ভিদের সংখ্যা","শুধু প্রাণীর সংখ্যা","শুধু অণুজীব"],"answer":"A","explanation":"সঠিক উত্তর: A. জীবের বৈচিত্র্য","kind":"EVS","level":"EASY"},{"orig":116,"id":116,"text":"বন্যপ্রাণী সংরক্ষণের জন্য প্রতিষ্ঠিত এলাকা:","options":["জাতীয় উদ্যান","শিল্পাঞ্চল","বাজার","শহর"],"answer":"A","explanation":"সঠিক উত্তর: A. জাতীয় উদ্যান","kind":"EVS","level":"EASY"},{"orig":117,"id":117,"text":"কাজিরাঙা জাতীয় উদ্যান কোন রাজ্যে?","options":["অসম","পশ্চিমবঙ্গ","কেরালা","গুজরাট"],"answer":"A","explanation":"সঠিক উত্তর: A. অসম","kind":"EVS","level":"EASY"},{"orig":118,"id":118,"text":"সুন্দরবন কোন ধরনের বন?","options":["ম্যানগ্রোভ বন","শঙ্কুযুক্ত বন","মরুভূমির বন","পর্ণমোচী বন"],"answer":"A","explanation":"সঠিক উত্তর: A. ম্যানগ্রোভ বন","kind":"EVS","level":"EASY"},{"orig":119,"id":119,"text":"সুন্দরবন প্রধানত কোন প্রাণীর জন্য বিখ্যাত?","options":["রয়্যাল বেঙ্গল টাইগার","একশৃঙ্গ গণ্ডার","সিংহ","উট"],"answer":"A","explanation":"সঠিক উত্তর: A. রয়্যাল বেঙ্গল টাইগার","kind":"EVS","level":"EASY"},{"orig":120,"id":120,"text":"পরিবেশ সংরক্ষণে শিশুর ভূমিকা:","options":["জল ও বিদ্যুৎ অপচয় করা","পরিবেশবান্ধব আচরণ করা","বেশি প্লাস্টিক ব্যবহার করা","গাছ কাটা"],"answer":"B","explanation":"সঠিক উত্তর: B. পরিবেশবান্ধব আচরণ করা","kind":"EVS","level":"EASY"},{"orig":121,"id":121,"text":"He is too weak to walk. — এর সঠিক পরিবর্তন কোনটি?","options":["He is so weak that he cannot walk.","He is very weak and he walks.","He is weak but he can walk.","He is weak to walking."],"answer":"A","explanation":"সঠিক উত্তর: A. He is so weak that he cannot walk.","kind":"English","level":"EASY"},{"orig":122,"id":122,"text":"“Honest” শব্দটির আগে কোন article বসবে?","options":["A","An","The","No article"],"answer":"B","explanation":"সঠিক উত্তর: B. An","kind":"English","level":"EASY"},{"orig":123,"id":123,"text":"“The sun rises in the east.” — বাক্যটির tense কী?","options":["Simple Present","Present Continuous","Simple Past","Present Perfect"],"answer":"A","explanation":"সঠিক উত্তর: A. Simple Present","kind":"English","level":"EASY"},{"orig":124,"id":124,"text":"“She has been reading for two hours.” — এটি কোন tense?","options":["Present Perfect","Present Perfect Continuous","Past Perfect Continuous","Future Continuous"],"answer":"B","explanation":"সঠিক উত্তর: B. Present Perfect Continuous","kind":"English","level":"EASY"},{"orig":125,"id":125,"text":"“I went to school yesterday.” — এখানে “yesterday” কী?","options":["Adjective","Adverb","Pronoun","Preposition"],"answer":"B","explanation":"সঠিক উত্তর: B. Adverb","kind":"English","level":"EASY"},{"orig":126,"id":126,"text":"“He runs quickly.” — “quickly” কোন পদ?","options":["Noun","Adjective","Adverb","Pronoun"],"answer":"C","explanation":"সঠিক উত্তর: C. Adverb","kind":"English","level":"EASY"},{"orig":127,"id":127,"text":"“Rina is taller than Mina.” — “taller” কোন degree?","options":["Positive","Comparative","Superlative","None"],"answer":"B","explanation":"সঠিক উত্তর: B. Comparative","kind":"English","level":"EASY"},{"orig":128,"id":128,"text":"“He is the best boy in the class.” — “best” কোন degree?","options":["Positive","Comparative","Superlative","None"],"answer":"C","explanation":"সঠিক উত্তর: C. Superlative","kind":"English","level":"EASY"},{"orig":129,"id":129,"text":"“I am fond ___ music.” — শূন্যস্থানে কী হবে?","options":["in","of","at","for"],"answer":"B","explanation":"সঠিক উত্তর: B. of","kind":"English","level":"EASY"},{"orig":130,"id":130,"text":"“She is good ___ English.”","options":["in","at","on","by"],"answer":"B","explanation":"সঠিক উত্তর: B. at","kind":"English","level":"EASY"},{"orig":131,"id":131,"text":"“Neither Ram nor Shyam ___ present.”","options":["are","were","is","have"],"answer":"C","explanation":"সঠিক উত্তর: C. is","kind":"English","level":"EASY"},{"orig":132,"id":132,"text":"“Each of the boys ___ a book.”","options":["have","has","are","were"],"answer":"B","explanation":"সঠিক উত্তর: B. has","kind":"English","level":"EASY"},{"orig":133,"id":133,"text":"“The news ___ true.”","options":["are","were","is","have"],"answer":"C","explanation":"সঠিক উত্তর: C. is","kind":"English","level":"EASY"},{"orig":134,"id":134,"text":"“Children” এর singular form:","options":["Child","Childs","Childes","Childer"],"answer":"A","explanation":"সঠিক উত্তর: A. Child","kind":"English","level":"EASY"},{"orig":135,"id":135,"text":"“Mouse” এর plural form:","options":["Mouses","Mouse","Mice","Mices"],"answer":"C","explanation":"সঠিক উত্তর: C. Mice","kind":"English","level":"EASY"},{"orig":136,"id":136,"text":"“Goose” এর plural:","options":["Gooses","Geese","Goose","Geeses"],"answer":"B","explanation":"সঠিক উত্তর: B. Geese","kind":"English","level":"EASY"},{"orig":137,"id":137,"text":"“Beautiful” এর synonym:","options":["Ugly","Pretty","Bad","Weak"],"answer":"B","explanation":"সঠিক উত্তর: B. Pretty","kind":"English","level":"EASY"},{"orig":138,"id":138,"text":"“Brave” এর antonym:","options":["Bold","Courageous","Coward","Strong"],"answer":"C","explanation":"সঠিক উত্তর: C. Coward","kind":"English","level":"EASY"},{"orig":139,"id":139,"text":"“Rapid” এর synonym:","options":["Slow","Fast","Weak","Late"],"answer":"B","explanation":"সঠিক উত্তর: B. Fast","kind":"English","level":"EASY"},{"orig":140,"id":140,"text":"“Ancient” এর antonym:","options":["Old","Modern","Past","Former"],"answer":"B","explanation":"সঠিক উত্তর: B. Modern","kind":"English","level":"EASY"},{"orig":141,"id":141,"text":"“A man who cannot read or write” — এক কথায়:","options":["Literate","Illiterate","Scholar","Teacher"],"answer":"B","explanation":"সঠিক উত্তর: B. Illiterate","kind":"English","level":"EASY"},{"orig":142,"id":142,"text":"“One who loves mankind”:","options":["Philanthropist","Misanthrope","Optimist","Pessimist"],"answer":"A","explanation":"সঠিক উত্তর: A. Philanthropist","kind":"English","level":"EASY"},{"orig":143,"id":143,"text":"“Look after” means:","options":["Search","Take care of","Ignore","Follow"],"answer":"B","explanation":"সঠিক উত্তর: B. Take care of","kind":"English","level":"EASY"},{"orig":144,"id":144,"text":"“Give up” means:","options":["Continue","Abandon","Start","Receive"],"answer":"B","explanation":"সঠিক উত্তর: B. Abandon","kind":"English","level":"EASY"},{"orig":145,"id":145,"text":"“Break down” means:","options":["Stop functioning","Build","Repair","Continue"],"answer":"A","explanation":"সঠিক উত্তর: A. Stop functioning","kind":"English","level":"EASY"},{"orig":146,"id":146,"text":"“The boy was punished by the teacher.” — এটি কোন voice?","options":["Active","Passive","Interrogative","Imperative"],"answer":"B","explanation":"সঠিক উত্তর: B. Passive","kind":"English","level":"MEDIUM"},{"orig":147,"id":147,"text":"“Open the door.” — এটি কোন ধরনের sentence?","options":["Assertive","Interrogative","Imperative","Exclamatory"],"answer":"C","explanation":"সঠিক উত্তর: C. Imperative","kind":"English","level":"MEDIUM"},{"orig":148,"id":148,"text":"“What a beautiful flower!” — এটি:","options":["Assertive","Imperative","Interrogative","Exclamatory"],"answer":"D","explanation":"সঠিক উত্তর: D. Exclamatory","kind":"English","level":"MEDIUM"},{"orig":149,"id":149,"text":"“If I were you, I would help him.” — এখানে “were” কী নির্দেশ করে?","options":["Indicative mood","Subjunctive mood","Imperative mood","Passive voice"],"answer":"B","explanation":"সঠিক উত্তর: B. Subjunctive mood","kind":"English","level":"MEDIUM"},{"orig":150,"id":150,"text":"“She said, ‘I am busy.’” — Reported speech:","options":["She said that she was busy.","She said that I am busy.","She says that she was busy.","She said that she is busy."],"answer":"A","explanation":"সঠিক উত্তর: A. She said that she was busy.","kind":"English","level":"MEDIUM"},{"orig":151,"id":151,"text":"“He said, ‘I have finished my work.’” — Indirect speech:","options":["He said that he had finished his work.","He said that he has finished his work.","He said that I had finished my work.","He says that he had finished his work."],"answer":"A","explanation":"সঠিক উত্তর: A. He said that he had finished his work.","kind":"English","level":"MEDIUM"},{"orig":152,"id":152,"text":"“The teacher said to the boy, ‘Do not waste time.’”","options":["The teacher told the boy not to waste time.","The teacher said the boy do not waste time.","The teacher told the boy do not waste time.","The teacher asked the boy wasting time."],"answer":"A","explanation":"সঠিক উত্তর: A. The teacher told the boy not to waste time.","kind":"English","level":"MEDIUM"},{"orig":153,"id":153,"text":"“He said to me, ‘Are you ill?’”","options":["He asked me if I was ill.","He told me that I am ill.","He asked me that I was ill.","He said to me I was ill."],"answer":"A","explanation":"সঠিক উত্তর: A. He asked me if I was ill.","kind":"English","level":"MEDIUM"},{"orig":154,"id":154,"text":"“She said, ‘Where do you live?’”","options":["She asked where I lived.","She asked where did I live.","She said where I live.","She told where I lived."],"answer":"A","explanation":"সঠিক উত্তর: A. She asked where I lived.","kind":"English","level":"MEDIUM"},{"orig":155,"id":155,"text":"“He said, ‘Alas! I am undone.’”","options":["He exclaimed with sorrow that he was undone.","He said that he is undone.","He asked if he was undone.","He told that he was undone."],"answer":"A","explanation":"সঠিক উত্তর: A. He exclaimed with sorrow that he was undone.","kind":"English","level":"MEDIUM"},{"orig":156,"id":156,"text":"“The teacher said, ‘The earth moves round the sun.’”","options":["The teacher said that the earth moved round the sun.","The teacher said that the earth moves round the sun.","The teacher said that the earth had moved round the sun.","The teacher said that the earth is moving round the sun."],"answer":"B","explanation":"সঠিক উত্তর: B. The teacher said that the earth moves round the sun.","kind":"English","level":"MEDIUM"},{"orig":157,"id":157,"text":"“He said, ‘I will go tomorrow.’”","options":["He said that he would go the next day.","He said that he will go tomorrow.","He says that he would go the next day.","He said that I would go tomorrow."],"answer":"A","explanation":"সঠিক উত্তর: A. He said that he would go the next day.","kind":"English","level":"MEDIUM"},{"orig":158,"id":158,"text":"“She said, ‘I can swim.’”","options":["She said that she could swim.","She said that she can swim.","She told that I could swim.","She says that she could swim."],"answer":"A","explanation":"সঠিক উত্তর: A. She said that she could swim.","kind":"English","level":"MEDIUM"},{"orig":159,"id":159,"text":"“The boy said, ‘I saw the movie yesterday.’”","options":["The boy said that he had seen the movie the previous day.","The boy said that he saw the movie yesterday.","The boy said that I had seen the movie.","The boy said that he has seen the movie."],"answer":"A","explanation":"সঠিক উত্তর: A. The boy said that he had seen the movie the previous day.","kind":"English","level":"MEDIUM"},{"orig":160,"id":160,"text":"“He said, ‘Let us go for a walk.’”","options":["He suggested that we should go for a walk.","He ordered us to go for a walk.","He said that let us go for a walk.","He asked us go for a walk."],"answer":"A","explanation":"সঠিক উত্তর: A. He suggested that we should go for a walk.","kind":"English","level":"MEDIUM"},{"orig":161,"id":161,"text":"“I wish I ___ a bird.”","options":["am","was","were","be"],"answer":"C","explanation":"সঠিক উত্তর: C. were","kind":"English","level":"MEDIUM"},{"orig":162,"id":162,"text":"“Unless you work hard, you will not succeed.” — “Unless” means:","options":["If","If not","Because","Although"],"answer":"B","explanation":"সঠিক উত্তর: B. If not","kind":"English","level":"MEDIUM"},{"orig":163,"id":163,"text":"“He is senior ___ me.”","options":["than","to","from","with"],"answer":"B","explanation":"সঠিক উত্তর: B. to","kind":"English","level":"MEDIUM"},{"orig":164,"id":164,"text":"“No sooner did he arrive ___ it started raining.”","options":["when","than","then","and"],"answer":"B","explanation":"সঠিক উত্তর: B. than","kind":"English","level":"MEDIUM"},{"orig":165,"id":165,"text":"“Hardly had I reached the station ___ the train left.”","options":["than","when","then","and"],"answer":"B","explanation":"সঠিক উত্তর: B. when","kind":"English","level":"MEDIUM"},{"orig":166,"id":166,"text":"“He as well as his friends ___ coming.”","options":["are","were","is","have"],"answer":"C","explanation":"সঠিক উত্তর: C. is","kind":"English","level":"MEDIUM"},{"orig":167,"id":167,"text":"“Bread and butter ___ my favourite breakfast.”","options":["are","is","were","have"],"answer":"B","explanation":"সঠিক উত্তর: B. is","kind":"English","level":"MEDIUM"},{"orig":168,"id":168,"text":"“Mathematics ___ my favourite subject.”","options":["are","is","were","have"],"answer":"B","explanation":"সঠিক উত্তর: B. is","kind":"English","level":"MEDIUM"},{"orig":169,"id":169,"text":"“The cattle ___ grazing in the field.”","options":["is","was","are","has"],"answer":"C","explanation":"সঠিক উত্তর: C. are","kind":"English","level":"MEDIUM"},{"orig":170,"id":170,"text":"“Scissors” is:","options":["Singular noun","Plural noun","Abstract noun","Proper noun"],"answer":"B","explanation":"সঠিক উত্তর: B. Plural noun","kind":"English","level":"MEDIUM"},{"orig":171,"id":171,"text":"“Honesty is the best policy.” — “Honesty” is:","options":["Common noun","Proper noun","Abstract noun","Collective noun"],"answer":"C","explanation":"সঠিক উত্তর: C. Abstract noun","kind":"English","level":"MEDIUM"},{"orig":172,"id":172,"text":"“A flock of birds” — “flock” is:","options":["Abstract noun","Collective noun","Proper noun","Material noun"],"answer":"B","explanation":"সঠিক উত্তর: B. Collective noun","kind":"English","level":"MEDIUM"},{"orig":173,"id":173,"text":"“Gold is a precious metal.” — “Gold” is:","options":["Material noun","Abstract noun","Collective noun","Proper noun"],"answer":"A","explanation":"সঠিক উত্তর: A. Material noun","kind":"English","level":"MEDIUM"},{"orig":174,"id":174,"text":"“This is the boy who won the prize.” — “who” is:","options":["Personal pronoun","Relative pronoun","Demonstrative pronoun","Reflexive pronoun"],"answer":"B","explanation":"সঠিক উত্তর: B. Relative pronoun","kind":"English","level":"MEDIUM"},{"orig":175,"id":175,"text":"“Myself” is:","options":["Demonstrative pronoun","Reflexive pronoun","Relative pronoun","Interrogative pronoun"],"answer":"B","explanation":"সঠিক উত্তর: B. Reflexive pronoun","kind":"English","level":"MEDIUM"},{"orig":176,"id":176,"text":"“Who are you?” — “Who” is:","options":["Relative pronoun","Interrogative pronoun","Personal pronoun","Reflexive pronoun"],"answer":"B","explanation":"সঠিক উত্তর: B. Interrogative pronoun","kind":"English","level":"MEDIUM"},{"orig":177,"id":177,"text":"“This book is mine.” — “mine” is:","options":["Possessive pronoun","Relative pronoun","Demonstrative pronoun","Reflexive pronoun"],"answer":"A","explanation":"সঠিক উত্তর: A. Possessive pronoun","kind":"English","level":"MEDIUM"},{"orig":178,"id":178,"text":"“He speaks slowly.” — “slowly” is:","options":["Adjective","Adverb","Noun","Pronoun"],"answer":"B","explanation":"সঠিক উত্তর: B. Adverb","kind":"English","level":"MEDIUM"},{"orig":179,"id":179,"text":"“The very tall boy” — “very” is:","options":["Adverb","Adjective","Noun","Preposition"],"answer":"A","explanation":"সঠিক উত্তর: A. Adverb","kind":"English","level":"MEDIUM"},{"orig":180,"id":180,"text":"“She sings a beautiful song.” — “beautiful” is:","options":["Adverb","Adjective","Noun","Pronoun"],"answer":"B","explanation":"সঠিক উত্তর: B. Adjective","kind":"English","level":"MEDIUM"},{"orig":181,"id":181,"text":"Piaget-এর মতে শিশুর জ্ঞানীয় বিকাশের প্রথম স্তর কোনটি?","options":["Pre-operational","Sensorimotor","Concrete operational","Formal operational"],"answer":"B","explanation":"সঠিক উত্তর: B. Sensorimotor","kind":"CDP","level":"MEDIUM"},{"orig":182,"id":182,"text":"Piaget-এর Pre-operational stage সাধারণত কোন বয়সে?","options":["0–2 বছর","2–7 বছর","7–11 বছর","11–15 বছর"],"answer":"B","explanation":"সঠিক উত্তর: B. 2–7 বছর","kind":"CDP","level":"MEDIUM"},{"orig":183,"id":183,"text":"Piaget-এর Concrete Operational stage:","options":["0–2","2–7","7–11","11–15"],"answer":"C","explanation":"সঠিক উত্তর: C. 7–11","kind":"CDP","level":"MEDIUM"},{"orig":184,"id":184,"text":"Formal Operational stage সাধারণত শুরু হয়:","options":["2 বছর","5 বছর","7 বছর","11 বছর বা তার পরে"],"answer":"D","explanation":"সঠিক উত্তর: D. 11 বছর বা তার পরে","kind":"CDP","level":"MEDIUM"},{"orig":185,"id":185,"text":"Cephalocaudal principle বলতে বোঝায়:","options":["পা থেকে মাথার দিকে বিকাশ","মাথা থেকে পায়ের দিকে বিকাশ","কেন্দ্র থেকে প্রান্তে বিকাশ","প্রান্ত থেকে কেন্দ্রে বিকাশ"],"answer":"B","explanation":"সঠিক উত্তর: B. মাথা থেকে পায়ের দিকে বিকাশ","kind":"CDP","level":"MEDIUM"},{"orig":186,"id":186,"text":"Proximodistal principle বলতে বোঝায়:","options":["মাথা থেকে পা","কেন্দ্র থেকে প্রান্তের দিকে বিকাশ","পা থেকে মাথা","প্রান্ত থেকে কেন্দ্র"],"answer":"B","explanation":"সঠিক উত্তর: B. কেন্দ্র থেকে প্রান্তের দিকে বিকাশ","kind":"CDP","level":"MEDIUM"},{"orig":187,"id":187,"text":"শিশুর বিকাশের একটি গুরুত্বপূর্ণ বৈশিষ্ট্য:","options":["বিকাশ হঠাৎ ঘটে","বিকাশ একটি ধারাবাহিক প্রক্রিয়া","সব শিশুর বিকাশ একই","বিকাশ থেমে থাকে"],"answer":"B","explanation":"সঠিক উত্তর: B. বিকাশ একটি ধারাবাহিক প্রক্রিয়া","kind":"CDP","level":"MEDIUM"},{"orig":188,"id":188,"text":"“Development proceeds from general to specific” অর্থ:","options":["সাধারণ প্রতিক্রিয়া থেকে নির্দিষ্ট প্রতিক্রিয়ায় বিকাশ","নির্দিষ্ট থেকে সাধারণ","কোনো নিয়ম নেই","শুধু শারীরিক বিকাশ"],"answer":"A","explanation":"সঠিক উত্তর: A. সাধারণ প্রতিক্রিয়া থেকে নির্দিষ্ট প্রতিক্রিয়ায় বিকাশ","kind":"CDP","level":"MEDIUM"},{"orig":189,"id":189,"text":"শিশুর বিকাশে বংশগতি ও পরিবেশ:","options":["একে অপরের থেকে সম্পূর্ণ স্বাধীন","উভয়ই গুরুত্বপূর্ণ","শুধু বংশগতি গুরুত্বপূর্ণ","শুধু পরিবেশ গুরুত্বপূর্ণ"],"answer":"B","explanation":"সঠিক উত্তর: B. উভয়ই গুরুত্বপূর্ণ","kind":"CDP","level":"MEDIUM"},{"orig":190,"id":190,"text":"Vygotsky-এর ZPD-এর পূর্ণরূপ:","options":["Zone of Personal Development","Zone of Proximal Development","Zone of Physical Development","Zone of Primary Development"],"answer":"B","explanation":"সঠিক উত্তর: B. Zone of Proximal Development","kind":"CDP","level":"MEDIUM"},{"orig":191,"id":191,"text":"Scaffolding বলতে বোঝায়:","options":["শিশুকে কোনো সাহায্য না করা","প্রয়োজন অনুযায়ী সাময়িক সহায়তা প্রদান","শুধু শাস্তি দেওয়া","শুধু পরীক্ষা নেওয়া"],"answer":"B","explanation":"সঠিক উত্তর: B. প্রয়োজন অনুযায়ী সাময়িক সহায়তা প্রদান","kind":"CDP","level":"MEDIUM"},{"orig":192,"id":192,"text":"Vygotsky-এর মতে শিশুর শেখায় কোনটি গুরুত্বপূর্ণ?","options":["সামাজিক মিথস্ক্রিয়া","একাকীত্ব","শুধু মুখস্থ","শুধু পরীক্ষা"],"answer":"A","explanation":"সঠিক উত্তর: A. সামাজিক মিথস্ক্রিয়া","kind":"CDP","level":"MEDIUM"},{"orig":193,"id":193,"text":"Kohlberg-এর তত্ত্ব কোন বিষয়ে?","options":["ভাষা বিকাশ","নৈতিক বিকাশ","শারীরিক বিকাশ","ভাষা শিক্ষা"],"answer":"B","explanation":"সঠিক উত্তর: B. নৈতিক বিকাশ","kind":"CDP","level":"MEDIUM"},{"orig":194,"id":194,"text":"Gardner-এর Multiple Intelligence theory অনুযায়ী:","options":["বুদ্ধিমত্তা একটিমাত্র","মানুষের একাধিক ধরনের বুদ্ধিমত্তা থাকতে পারে","IQ-ই সব","বুদ্ধিমত্তা পরিবর্তন হয় না"],"answer":"B","explanation":"সঠিক উত্তর: B. মানুষের একাধিক ধরনের বুদ্ধিমত্তা থাকতে পারে","kind":"CDP","level":"MEDIUM"},{"orig":195,"id":195,"text":"শিশুকে “জ্ঞান অর্জনের সক্রিয় অংশগ্রহণকারী” হিসেবে দেখা হয় কোন দৃষ্টিভঙ্গিতে?","options":["Constructivist","Behaviourist","Traditional","Authoritarian"],"answer":"A","explanation":"সঠিক উত্তর: A. Constructivist","kind":"CDP","level":"MEDIUM"},{"orig":196,"id":196,"text":"শিশুর ভুল উত্তরকে শিক্ষক কীভাবে দেখবেন?","options":["শাস্তির কারণ","শেখার প্রক্রিয়ার গুরুত্বপূর্ণ অংশ","শিশুর অযোগ্যতার প্রমাণ","উপেক্ষা করবেন"],"answer":"B","explanation":"সঠিক উত্তর: B. শেখার প্রক্রিয়ার গুরুত্বপূর্ণ অংশ","kind":"CDP","level":"MEDIUM"},{"orig":197,"id":197,"text":"RTE Act 2009 অনুযায়ী, অষ্টম শ্রেণি পর্যন্ত কত শতাংশ শিক্ষার্থীকে ফেল করানো যাবে?","options":["10%","20%","50%","0%"],"answer":"D","explanation":"সঠিক উত্তর: D. 0%","kind":"CDP","level":"MEDIUM"},{"orig":198,"id":198,"text":"Inclusive Education-এর মূল উদ্দেশ্য:","options":["প্রতিবন্ধী শিশুদের আলাদা রাখা","সব শিশুকে একসঙ্গে শেখার সুযোগ দেওয়া","শুধু মেধাবীদের পড়ানো","শুধু দুর্বলদের পড়ানো"],"answer":"B","explanation":"সঠিক উত্তর: B. সব শিশুকে একসঙ্গে শেখার সুযোগ দেওয়া","kind":"CDP","level":"MEDIUM"},{"orig":199,"id":199,"text":"Dyslexia মূলত কোন সমস্যার সঙ্গে সম্পর্কিত?","options":["পড়া","শোনা","হাঁটা","দেখা"],"answer":"A","explanation":"সঠিক উত্তর: A. পড়া","kind":"CDP","level":"MEDIUM"},{"orig":200,"id":200,"text":"Remedial Teaching-এর উদ্দেশ্য:","options":["দুর্বলতা শনাক্ত করে তা কাটিয়ে উঠতে সাহায্য করা","শাস্তি দেওয়া","শুধু পরীক্ষা নেওয়া","সিলেবাস বাড়ানো"],"answer":"A","explanation":"সঠিক উত্তর: A. দুর্বলতা শনাক্ত করে তা কাটিয়ে উঠতে সাহায্য করা","kind":"CDP","level":"MEDIUM"},{"orig":201,"id":201,"text":"Formative Assessment কখন করা হয়?","options":["শুধুমাত্র বছর শেষে","শেখার সময় চলমানভাবে","শুধু ভর্তি সময়","শুধু বোর্ড পরীক্ষায়"],"answer":"B","explanation":"সঠিক উত্তর: B. শেখার সময় চলমানভাবে","kind":"CDP","level":"MEDIUM"},{"orig":202,"id":202,"text":"Bloom's Taxonomy-তে “Evaluation” বলতে:","options":["তথ্য মনে রাখা","তথ্য বোঝা","কোনো কিছুর বিচার/মূল্যায়ন করা","তথ্য অনুলিপি করা"],"answer":"C","explanation":"সঠিক উত্তর: C. কোনো কিছুর বিচার/মূল্যায়ন করা","kind":"CDP","level":"MEDIUM"},{"orig":203,"id":203,"text":"“Learning by doing” ধারণাটি কোন শিক্ষাবিদের সঙ্গে বেশি যুক্ত?","options":["John Dewey","Freud","Skinner","Pavlov"],"answer":"A","explanation":"সঠিক উত্তর: A. John Dewey","kind":"CDP","level":"MEDIUM"},{"orig":204,"id":204,"text":"Reinforcement theory কোন মনোবিজ্ঞানীর সঙ্গে যুক্ত?","options":["Piaget","Skinner","Vygotsky","Kohlberg"],"answer":"B","explanation":"সঠিক উত্তর: B. Skinner","kind":"CDP","level":"MEDIUM"},{"orig":205,"id":205,"text":"শ্রেণিকক্ষে প্রশ্ন করার মাধ্যমে শিক্ষণ কী লাভ করে?","options":["সময় নষ্ট হয়","বিশৃঙ্খলা সৃষ্টি হয়","শিক্ষার্থীদের চিন্তন ক্ষমতা ও সক্রিয়তা বাড়ে","শিক্ষক বিশ্রাম পান"],"answer":"C","explanation":"সঠিক উত্তর: C. শিক্ষার্থীদের চিন্তন ক্ষমতা ও সক্রিয়তা বাড়ে","kind":"CDP","level":"MEDIUM"},{"orig":206,"id":206,"text":"‘Action Research' বলতে কী বোঝায়?","options":["নতুন তত্ত্ব তৈরি করা","তাৎক্ষণিক স্থানীয় সমস্যার বৈজ্ঞানিক সমাধান","বড় গবেষণা","শিক্ষানীতি তৈরি করা"],"answer":"B","explanation":"সঠিক উত্তর: B. তাৎক্ষণিক স্থানীয় সমস্যার বৈজ্ঞানিক সমাধান","kind":"CDP","level":"MEDIUM"},{"orig":207,"id":207,"text":"‘Learning without Burden\" (বোঝাহীন শিখন) - এটি কোন কমিটির রিপোর্ট?","options":["Kothari Commission","Yashpal Committee","Mudaliar Commission","NEP 2020 < 22"],"answer":"B","explanation":"সঠিক উত্তর: B. Yashpal Committee","kind":"CDP","level":"MEDIUM"},{"orig":208,"id":208,"text":"একটি শ্রেণিকক্ষেফ্ক অন্তর্ভুক্তিমূলক পরিবেশ তৈরি করতে শিক্ষক কী করবেন?","options":["শুধুমাত্ৰ বাংলা ভাষায় কথা বলবেন","শিক্ষার্থীদের মাতৃত্ভাষাকে সম্মান করবেন ও ব্যবহার করতে দেবেন","যারা মাতৃভাষা ব্যবহার করে তাদের শাস্তি দেবেন","সবাইকে ইংরেজিতে কথা বলতে বাধ্য করবেন"],"answer":"B","explanation":"সঠিক উত্তর: B. শিক্ষার্থীদের মাতৃত্ভাষাকে সম্মান করবেন ও ব্যবহার করতে দেবেন","kind":"CDP","level":"MEDIUM"},{"orig":209,"id":209,"text":"‘Emotional Intelligence\" (প্ৰারফোতভিক বৃদ্ধি) কথাটি কার সাথে যুক্ত?","options":["Daniel Goleman","Jean Piaget","Sigmund Freud","Carl Rogers"],"answer":"A","explanation":"সঠিক উত্তর: A. Daniel Goleman","kind":"CDP","level":"MEDIUM"},{"orig":210,"id":210,"text":"শিখনের ক্রব্রে 'Transfer of Learning\" (শিখন সঞ্চালন) বলতে কী বোঝায়?","options":["এক স্কুলে শিখে অন্য স্কুলে যাওয়া","এক পরিস্থিতিতে অর্জিত জ্ঞান অন্য পরিস্থিতিতে প্রয়োগ করা","শিক্ষকের জ্ঞান ছাত্রে সঞ্চালিত হওয়া","বই থেকে খাতায় লেখা"],"answer":"B","explanation":"সঠিক উত্তর: B. এক পরিস্থিতিতে অর্জিত জ্ঞান অন্য পরিস্থিতিতে প্রয়োগ করা","kind":"CDP","level":"MEDIUM"},{"orig":211,"id":211,"text":"গদ্যাংশে 'বাট' শব্দটির অর্থ কী?","options":["পাত্র","পথ বা রাস্তা","বটগাছ","বাঁটখারা"],"answer":"B","explanation":"সঠিক উত্তর: B. পথ বা রাস্তা","kind":"Bengali","level":"MEDIUM"},{"orig":212,"id":212,"text":"'পুণ্য' শব্দটির বিপরীত শব্দ কোনটি?","options":["অপুণ্য","পাপ","ধর্ম","পবিত্র"],"answer":"B","explanation":"সঠিক উত্তর: B. পাপ","kind":"Bengali","level":"MEDIUM"},{"orig":213,"id":213,"text":"'বাঙালির কাজ' - এখানে 'বাঙালির' পদটিতে কোন বিভক্তি বা অনুসর্গ যুক্ত আছে?","options":["এর বিভক্তি","র বিভক্তি","হতে অনুসর্গ","কে বিভক্তি"],"answer":"B","explanation":"সঠিক উত্তর: B. র বিভক্তি","kind":"Bengali","level":"MEDIUM"},{"orig":214,"id":214,"text":"'পুকুর পাড়ে' - এটি কোন কারক?","options":["কর্ম কারক","করণ কারক","অধিকরণ কারক","অপাদান কারক"],"answer":"C","explanation":"সঠিক উত্তর: C. অধিকরণ কারক","kind":"Bengali","level":"MEDIUM"},{"orig":215,"id":215,"text":"'বনবাসী' শব্দটির সমাস নির্ণয় করুন।","options":["বনে বাস করে যে (উপপদ তৎপুরুষ)","বন ও বাসী (দ্বন্দ্ব)","বনের বাসী (ষষ্ঠী তৎপুরুষ)","বনে বাস (অব্যয়ীভাব)"],"answer":"A","explanation":"সঠিক উত্তর: A. বনে বাস করে যে (উপপদ তৎপুরুষ)","kind":"Bengali","level":"MEDIUM"},{"orig":216,"id":216,"text":"'নদীবৃক্ষ' শব্দটির সঠিক সন্ধি বিচ্ছেদ কোনটি?","options":["নদী + বৃক্ষ","নদ + বৃক্ষ","সন্ধি হয় না, এটি সমাসবদ্ধ পদ","নদি + বৃক্ষ"],"answer":"A","explanation":"সঠিক উত্তর: A. নদী + বৃক্ষ","kind":"Bengali","level":"MEDIUM"},{"orig":217,"id":217,"text":"\"তুমি কি আজ যাৱে?\" - বাক্যে 'কি' হলো:","options":["প্ৰশ্নবোধক সর্বনাম","সংশয়সূচক অব্যয়","প্রশ্নবোধক অব্যয়","ক্রিয়া বিশেষণ"],"answer":"C","explanation":"সঠিক উত্তর: C. প্রশ্নবোধক অব্যয়","kind":"Bengali","level":"MEDIUM"},{"orig":218,"id":218,"text":"'বিদ্যালয়' শব্দটিতে কোন দুটি ধ্বনির মিলন ঘটেছে?","options":["অ+আ","আ+আ","অ+অ","আ+অ"],"answer":"B","explanation":"সঠিক উত্তর: B. আ+আ","kind":"Bengali","level":"MEDIUM"},{"orig":219,"id":219,"text":"নিচের কোনটি মৌলিক স্বরধ্বনি নয়?","options":["অ","?","®","a"],"answer":"C","explanation":"সঠিক উত্তর: C. ®","kind":"Bengali","level":"MEDIUM"},{"orig":220,"id":220,"text":"'বৃষ্টি পড়ে টাপুর টুপুর' - এখানে 'টাপুর টুপুর' কী ধরনের পদ?","options":["ধ্বন্যাত্মক অব্যয়","সর্বনাম","বিশেষ্য","ক্রিয়া"],"answer":"A","explanation":"সঠিক উত্তর: A. ধ্বন্যাত্মক অব্যয়","kind":"Bengali","level":"MEDIUM"},{"orig":221,"id":221,"text":"'হাত' শব্দটি কী ধরনের শব্দ?","options":["তৎসম","তদ্ভব","দেশি","বিদেশি"],"answer":"B","explanation":"সঠিক উত্তর: B. তদ্ভব","kind":"Bengali","level":"MEDIUM"},{"orig":222,"id":222,"text":"\"ছেলেটি অঙ্কে কাঁচা।\" - এখানে 'কাঁচা' শব্দের অর্থ কী?","options":["অপক্ক","দুর্বল","সবুজ","কাঁচামাটি"],"answer":"B","explanation":"সঠিক উত্তর: B. দুর্বল","kind":"Bengali","level":"MEDIUM"},{"orig":223,"id":223,"text":"'কানাকানি' - এটি কোন সমাসের উদাহরণ?","options":["বহুব্রীহি (ব্যতিহার)","কর্মধারয়","দ্বন্দ্ব","তৎপুরুষ"],"answer":"A","explanation":"সঠিক উত্তর: A. বহুব্রীহি (ব্যতিহার)","kind":"Bengali","level":"MEDIUM"},{"orig":224,"id":224,"text":"\"সে কাল আসবে\" - বাক্যের ক্রিয়ার কাল কোনটি?","options":["বর্তমান কাল","অতীত কাল","ভবিষ্যৎ কাল","পুরাঘটিত অতীত কাল"],"answer":"C","explanation":"সঠিক উত্তর: C. ভবিষ্যৎ কাল","kind":"Bengali","level":"MEDIUM"},{"orig":225,"id":225,"text":"'উজ্জ্বল' শব্দটির সঠিক বানান বিশ্লেষণ কোনটি?","options":["উ+জ+জ+ব+ল","উ+জ+ঞ+ল","উ+জ+ব+ল","উ+ঝ+ল"],"answer":"A","explanation":"সঠিক উত্তর: A. উ+জ+জ+ব+ল","kind":"Bengali","level":"MEDIUM"},{"orig":226,"id":226,"text":"মাতৃভাষা শিক্ষার প্রাথমিক উদ্দেশ্য কী হওয়া উচিত?","options":["ব্যাকরণ মুখস্থ করা","সাবলীলভাবে ভাব প্রকাশ করা","দ্রুত পড়তে পারা","সুন্দর হাতের লেখা"],"answer":"B","explanation":"সঠিক উত্তর: B. সাবলীলভাবে ভাব প্রকাশ করা","kind":"Bengali","level":"MEDIUM"},{"orig":227,"id":227,"text":"ভাষা অর্জনের (Language Acquisition) ক্ষেত্রে সবচেয়ে গুরুত্বপূর্ণ স্তর কোনটি?","options":["শৈশবকাল (Early childhood)","কৈশোর","প্রাপ্তবয়স্ক","বৃদ্ধ বয়স"],"answer":"A","explanation":"সঠিক উত্তর: A. শৈশবকাল (Early childhood)","kind":"Bengali","level":"MEDIUM"},{"orig":228,"id":228,"text":"চমস্কির ((Chomsky) মতে মানুষের মস্তিষ্কে কোনটি থাকে যা ভাষা শিখতে সাহায্য করে?","options":["LED","LAD (Language Acquisition Device)","LCD","LBD"],"answer":"B","explanation":"সঠিক উত্তর: B. LAD (Language Acquisition Device)","kind":"Bengali","level":"MEDIUM"},{"orig":229,"id":229,"text":"একজন শিক্ষার্থী 'শ' এবং 'স' উচ্চারণে ভুল করলে শিক্ষকের কী করা উচিত?","options":["শাস্তি দেওয়া","বারবার সঠিক উচ্চারণ শোনানো এবং অনুশীলনের সুযোগ দেওয়া","বিষয়টি এড়িয়ে যাওয়া","তাকে ক্লাসের বাইরে বের করে দেওয়া"],"answer":"B","explanation":"সঠিক উত্তর: B. বারবার সঠিক উচ্চারণ শোনানো এবং অনুশীলনের সুযোগ দেওয়া","kind":"Bengali","level":"MEDIUM"},{"orig":230,"id":230,"text":"প্রাথমিক স্তরে কবিতা পড়ানোর মূল উদ্দেশ্য কী? AEA","options":["ব্যাকরণ শেখানো","রসাস্বাদন ও আনন্দদান","নতুন শব্দ শেখানো","কবি সম্পর্কে জানা"],"answer":"B","explanation":"সঠিক উত্তর: B. রসাস্বাদন ও আনন্দদান","kind":"Bengali","level":"MEDIUM"},{"orig":231,"id":231,"text":"‘Continuous and Comprehensive Evaluation' (CCE)-এ ‘Continuous’ বলতে বোঝায়:","options":["বছর শেষে পরীক্ষা","শিখন চলাকালীন নিয়মিত মূল্যায়ন","প্রতিদিন পরীক্ষা","শুধু খেলাধুলা"],"answer":"B","explanation":"সঠিক উত্তর: B. শিখন চলাকালীন নিয়মিত মূল্যায়ন","kind":"Bengali","level":"MEDIUM"},{"orig":232,"id":232,"text":"ভাষা শিক্ষকের চারটি মূল দক্ষতার (.5২W) সঠিক ক্রম কোনটি?","options":["Listening, Reading, Speaking, Writing","Listening, Speaking, Reading, Writing","Speaking, Listening, Reading, Writing","Reading, Writing, Listening, Speaking"],"answer":"B","explanation":"সঠিক উত্তর: B. Listening, Speaking, Reading, Writing","kind":"Bengali","level":"MEDIUM"},{"orig":233,"id":233,"text":"পিছিয়ে পড়া শিক্ষার্থীদের জন্য কোন ধরনের শিক্ষাদানের প্রয়োজন?","options":["Micro teaching","Remedial teaching (প্রতিকারমূলক শিক্ষণ)","Macro teaching","Team teaching"],"answer":"B","explanation":"সঠিক উত্তর: B. Remedial teaching (প্রতিকারমূলক শিক্ষণ)","kind":"Bengali","level":"MEDIUM"},{"orig":234,"id":234,"text":"শ্রেণিকক্ষে বিতিন্ন মাতৃত্ভাষার শিশু থাকলে (Multilingualism) শিক্ষক তাকে কীভাবে দেখবেন?","options":["একটি সমস্যা হিসেবে","একটি বাধা হিসেবে","একটি সম্পদ (Resource) হিসেবে","একটি চ্যালেঞ্জ হিসেবে"],"answer":"C","explanation":"সঠিক উত্তর: C. একটি সম্পদ (Resource) হিসেবে","kind":"Bengali","level":"MEDIUM"},{"orig":235,"id":235,"text":"'Role Play' (ভূমিকা অতিনয়) ভাষা শিক্ষায় কেন কার্যকর?","options":["এটি সময় কাটায়","এটি বাস্তৰ পরিস্থিতিতে ভাষা ব্যবহারের সুযোগ দেয়","এটি ব্যাকরণ শেখায়","এটি ছাত্রদের শান্ত রাখে"],"answer":"B","explanation":"সঠিক উত্তর: B. এটি বাস্তৰ পরিস্থিতিতে ভাষা ব্যবহারের সুযোগ দেয়","kind":"Bengali","level":"MEDIUM"},{"orig":236,"id":236,"text":"রিডিং পড়ার সময় কোনো শব্দের অর্থ বুঝতে না পারলে শিক্ষার্থীর কী করা উচিত?","options":["ডিকশনারি খোঁজা","প্রসঙ্গের ((০ne%) ওপর ভিত্তি করে অর্থ অনুমান করা","শব্দটি ছেড়ে দেওয়া","মুখস্থ করা"],"answer":"B","explanation":"সঠিক উত্তর: B. প্রসঙ্গের ((০ne%) ওপর ভিত্তি করে অর্থ অনুমান করা","kind":"Bengali","level":"MEDIUM"},{"orig":237,"id":237,"text":"নিচের কোনটি 'Productive skill\" (উৎপাদনমূলক দরকতা)? E","options":["শোনা ও পড়া","বলা ও লেখা","শোনা ও বলা","পড়া ও লেখা"],"answer":"B","explanation":"সঠিক উত্তর: B. বলা ও লেখা","kind":"Bengali","level":"MEDIUM"},{"orig":238,"id":238,"text":"'Dyslexia' মূলত কোন দক্ষতার সাথে যুক্ত সমস্যা?","options":["লেখা","বলা","পড়া (Reading)","শোনা"],"answer":"C","explanation":"সঠিক উত্তর: C. পড়া (Reading)","kind":"Bengali","level":"MEDIUM"},{"orig":239,"id":239,"text":"ব্যাকরণ শিক্ষার শ্রেষ্ঠ পদ্ধতি কোনটি? EE","options":["সূত্ৰ পদ্ধতি","আরোহী পদ্ধতি (Inductive method)","অবরোহী পদ্ধতি","অনুবাদ পদ্ধতি"],"answer":"B","explanation":"সঠিক উত্তর: B. আরোহী পদ্ধতি (Inductive method)","kind":"Bengali","level":"MEDIUM"},{"orig":240,"id":240,"text":"টিএলএম (TLM) ব্যবহারের মূল উদ্দেশ্য কী?","options":["শ্রেণিকক্ষ সাজানো","শিখনকে মূর্ত, সহজ ও আকর্ষণীয় করা","প্রধান শিক্ষককে খুশি করা","সময় নষ্ট করা"],"answer":"B","explanation":"সঠিক উত্তর: B. শিখনকে মূর্ত, সহজ ও আকর্ষণীয় করা","kind":"Bengali","level":"MEDIUM"},{"orig":241,"id":241,"text":"7^105 এর এককের ঘরের অঙ্ক (Unit digit) কত?","options":["1","3","7","9"],"answer":"C","explanation":"সঠিক উত্তর: C. 7","kind":"Math","level":"HARD"},{"orig":242,"id":242,"text":"2/3, 4/5 এবং 5/7 এর মধ্যে সবচেয়ে বড় ভগ্নাংশ কোনটি?","options":["2/3","4/5","5/7","বলা সম্ভব নয়"],"answer":"B","explanation":"সঠিক উত্তর: B. 4/5","kind":"Math","level":"HARD"},{"orig":243,"id":243,"text":"দুটি সংখ্যার অনুপাত 2:3 এবং তাদের ল.সা.গু. (LCM) 48। সংখ্যা দুটির যোগফল কত?","options":["20","30","40","50"],"answer":"C","explanation":"সঠিক উত্তর: C. 40","kind":"Math","level":"HARD"},{"orig":244,"id":244,"text":"300 এর 20% + 200 এর 30% = কত?","options":["100","120","150","60"],"answer":"B","explanation":"সঠিক উত্তর: B. 120","kind":"Math","level":"HARD"},{"orig":245,"id":245,"text":"একজন বিক্রেতা 4 টাকায় 5টি লেবু কিনে, 5 টাকায় 4টি লেবু বিক্রি করলেন। তার শতকরা লাভ কত?","options":["25%","36%","56.25%","50%"],"answer":"C","explanation":"সঠিক উত্তর: C. 56.25%","kind":"Math","level":"HARD"},{"orig":246,"id":246,"text":"একটি সুষম ষড়ভুজের (Hexagon) কতগুলি কর্ণ (Diagonals) থাকে?","options":["6","9","12","15"],"answer":"B","explanation":"সঠিক উত্তর: B. 9","kind":"Math","level":"HARD"},{"orig":247,"id":247,"text":"100 মিটার লম্বা একটি ট্রেন 10 সেকেন্ডে একটি টেলিগ্রাম পোষ্ট অতিক্রম করে। ট্রেনটির গতিবেগ কিমি/ঘণ্টা।","options":["36 km/hr","10 km/hr","18 km/hr","72 km/hr"],"answer":"A","explanation":"সঠিক উত্তর: A. 36 km/hr","kind":"Math","level":"HARD"},{"orig":248,"id":248,"text":"একটি ঘনকের (Cube) বাহুর দৈর্ঘ্য 5 সেমি হলে তার আয়তন (Volume) কত?","options":["25 ঘন সেমি","125 ঘন সেমি","150 ঘন সেমি","100 ঘন সেমি"],"answer":"B","explanation":"সঠিক উত্তর: B. 125 ঘন সেমি","kind":"Math","level":"HARD"},{"orig":249,"id":249,"text":"15 + 3 * 5 + 5 - 2 = কত? (BDMAS নিয়ম অনুযায়ী)","options":["33","28","4","20"],"answer":"A","explanation":"সঠিক উত্তর: A. 33. BDMAS অনুযায়ী প্রথমে 3 × 5 = 15; এরপর 15 + 15 + 5 − 2 = 33।","kind":"Math","level":"HARD"},{"orig":250,"id":250,"text":"প্রথম 5টি মৌলিক সংখ্যার (Prime numbers) যোগফল কত?","options":["18","28","26","15"],"answer":"B","explanation":"সঠিক উত্তর: B. 28","kind":"Math","level":"HARD"},{"orig":251,"id":251,"text":"একটি কোণের মান 60° হলে তার সম্পূরক কোণটি (Supplementary angle) কত?","options":["30°","120°","90°","60°"],"answer":"B","explanation":"সঠিক উত্তর: B. 120°","kind":"Math","level":"HARD"},{"orig":252,"id":252,"text":"প্রথম 10টি স্বাভাবিক সংখ্যার (Natural numbers) গড় (Average) কত?","options":["5","5.5","6","10"],"answer":"B","explanation":"সঠিক উত্তর: B. 5.5","kind":"Math","level":"HARD"},{"orig":253,"id":253,"text":"কোনো সংখ্যা ৪ দ্বারা বিভাজ্য হবে যদি:","options":["সংখ্যাটির শেষ অঙ্ক ৪ হয়","সংখ্যাটির শেষ 3টি অঙ্কু দ্বারা গঠিত সংখ্যা ৪ দ্বারা বিভাজ্য হয়","সংখ্যাটির অন্কগুলির যোগফল ৪ হয়","সংখ্যাটি জোড় হয়"],"answer":"B","explanation":"সঠিক উত্তর: B. সংখ্যাটির শেষ 3টি অঙ্কু দ্বারা গঠিত সংখ্যা ৪ দ্বারা বিভাজ্য হয়","kind":"Math","level":"HARD"},{"orig":254,"id":254,"text":"500 টাকার 5% সরল সুদের হারে 2 বছরের সূদ (Simple Interest) কত?","options":["50 টাকা","100 ঢাকা","25 ঢাকা","75 ঢাকা"],"answer":"A","explanation":"সঠিক উত্তর: A. 50 টাকা","kind":"Math","level":"HARD"},{"orig":255,"id":255,"text":"দুপুর 3:00 টার সময় ঘড়ির ঘণ্টা ও মিনিটের কাটার মধ্যে কত ডিগ্রি কোণ তৈরি হয়?","options":["45°","60°","90°","180°"],"answer":"C","explanation":"সঠিক উত্তর: C. 90°","kind":"Math","level":"HARD"},{"orig":256,"id":256,"text":"ঙঁযামিতিক চিন্তনের ভ্যান হিলে (Van Hiele) তত্ববে Level 3 বা 'Deduction' ভরের বৈশিষ্ট্য কী?","options":["কেবল চেহারা দেখে চেনা","আকারগুলির মধ্যে সম্পর্ক বোঝা","প্রমাণের যৌক্তিকতা বোঝা এবং গাণিতিক প্রমাণ (Formal Proof) করতে পারা","জ্যামিতি এডিয়ে যাওয়া"],"answer":"C","explanation":"সঠিক উত্তর: C. প্রমাণের যৌক্তিকতা বোঝা এবং গাণিতিক প্রমাণ (Formal Proof) করতে পারা","kind":"Math","level":"HARD"},{"orig":257,"id":257,"text":"গণিত শিক্ষায় 'Cuisenaire rods' (কূইজেনেয়ার রড) সাধারণত কী শেখাতে ব্যবহৃত হয়?","options":["ভগ্নাংশ (Fraction৪) এবং মৌলিক পাটিগণিত","বৃত্তের ক্ষেত্রফল","কোণ মাপা","আ'্ালজেত্রা"],"answer":"A","explanation":"সঠিক উত্তর: A. ভগ্নাংশ (Fraction৪) এবং মৌলিক পাটিগণিত","kind":"Math","level":"HARD"},{"orig":258,"id":258,"text":"NCF 2005 অনুযায়ী, বিদ্যালয়ে গণিত শিয্কার প্রধান লক্ষ্য হওয়া উচিত:","options":["দ্ৰুত হিসাব করতে শেখানো","শিশুদের চিন্তন প্রক্রিয়ার গাণিতিকীকরণ (Mathematization of child's thinking)","ভালো চাকরি পাওয়া","কেবল বইয়ের অঙ্ক শেষ করা"],"answer":"B","explanation":"সঠিক উত্তর: B. শিশুদের চিন্তন প্রক্রিয়ার গাণিতিকীকরণ (Mathematization of child's thinking)","kind":"Math","level":"HARD"},{"orig":259,"id":259,"text":"গণিতের ক্লাসে ভাষার (Language in Math) ভূমিকা সম্পর্কে কোনটি সঠিক?","options":["গণিতে ভাষার কোনো দরকার নেই","গাণিতিক শব্দভাণ্ডার (Vocabulary) এবং প্রতীকগুলি সমস্যা বুঝতে ও সমাধান করতে সাহায্য করে","এটি কেবল বাংলা ক্লাসের জন্য","ভাষা গণিতকে কঠিন করে দেয়"],"answer":"B","explanation":"সঠিক উত্তর: B. গাণিতিক শব্দভাণ্ডার (Vocabulary) এবং প্রতীকগুলি সমস্যা বুঝতে ও সমাধান করতে সাহায্য করে","kind":"Math","level":"HARD"},{"orig":260,"id":260,"text":"'Rubrics' (রুব্রিক্স) গণিত মূল্যায়নে কীভাবে সাহায্য করে?","options":["এটি শিক্ষার্থীদের কেবল নম্বর দেয়","এটি একটি স্পষ্ট নির্দেশিকা দেয় যে অঙ্কের পদ্ধতি, যুক্তি এবং উত্তরের জন্য কীভাবে নম্বর ভাগ করা হবে","এটি সময় নষ্ট করে","এটি শিক্ষকের কাজ বাড়ায়"],"answer":"B","explanation":"সঠিক উত্তর: B. এটি একটি স্পষ্ট নির্দেশিকা দেয় যে অঙ্কের পদ্ধতি, যুক্তি এবং উত্তরের জন্য কীভাবে নম্বর ভাগ করা হবে","kind":"Math","level":"HARD"},{"orig":261,"id":261,"text":"\"এমন দুটি সংখ্যা বল যাদের গুণফল 361\" - এটি কী ধরনের প্রশ্ন?","options":["ক্লোজড-এন্ডেড প্রশ্ন","ওপেন-এন্ডেড প্রশ্ন (pen-ended question)","এমসিকিউ","হ্যাঁ/না প্রশ্ন"],"answer":"B","explanation":"সঠিক উত্তর: B. ওপেন-এন্ডেড প্রশ্ন (pen-ended question)","kind":"Math","level":"HARD"},{"orig":262,"id":262,"text":"নিউম্যানের (Newman'5) ক্রুটি বিশ্লেষণের তত্তে, একটি শিশু যদি অঙ্কটি পড়তেই না পারে, তবে সে কোন ধাপে আটকে আছে?","options":["Reading error (গঠনগত ক্ৰুটি)","Comprehension error","Transformation error","Encoding error"],"answer":"A","explanation":"সঠিক উত্তর: A. Reading error (গঠনগত ক্ৰুটি)","kind":"Math","level":"HARD"},{"orig":263,"id":263,"text":"গঠনবাদী (Constructivism) গণিত ক্লাসে শিক্ষকের ভূমিকা কী?","options":["সব অঙ্ক বোর্ডে কষে দেওয়া","শিক্ষার্থীদের গাণিতিক সমস্যা সমাধানে স্বাধীনভাবে চিন্তা করতে ও অন্বেষণ করতে সাহায্য করা (Facilitator)","ক্লাসে চুপ করে বসে থাকা","কেবল খাতা দেখা"],"answer":"B","explanation":"সঠিক উত্তর: B. শিক্ষার্থীদের গাণিতিক সমস্যা সমাধানে স্বাধীনভাবে চিন্তা করতে ও অন্বেষণ করতে সাহায্য করা (Facilitator)","kind":"Math","level":"HARD"},{"orig":264,"id":264,"text":"প্রতিসাম্য (Symmetry)) শেখানোর জন্য বাস্তব জীবনের কোন উদাহরণটি সবচেয়ে ভালো?","options":["কালির ছাপ (inkblot) বা প্রজাপতির পাখা","একটি গোল পাথর","ব্ল্যাকবোর্ড","পেনসিল"],"answer":"A","explanation":"সঠিক উত্তর: A. কালির ছাপ (inkblot) বা প্রজাপতির পাখা","kind":"Math","level":"HARD"},{"orig":265,"id":265,"text":"গণিত শিক্ষায় ধাধা (Puzzle) এবং গেমস্‌ ব্যবহারের মূল সুবিধা কী?","options":["ক্লাস ফাকি দেওয়া","সমস্যা সমাধান দক্ষতা (Problem-solving) এবং গাণিতিক আগ্রহ বাড়ানো","ছাত্রদের ভয় দেখানো","মুখস্থ করা শেখানো"],"answer":"B","explanation":"সঠিক উত্তর: B. সমস্যা সমাধান দক্ষতা (Problem-solving) এবং গাণিতিক আগ্রহ বাড়ানো","kind":"Math","level":"HARD"},{"orig":266,"id":266,"text":"রেমিডিয়াল টিচিং (Remedial Teaching)-এ কোন কৌশলটি সবচেয়ে কার্যকর?","options":["একই পদ্ধতিতে বারবার পড়ানো","ডায়াগনষ্টিক টেষ্টের মাধ্যমে শিক্ষার্থীর নির্দিষ্ট দুর্বলতা বুঝে সেই অনুযায়ী আলাদা বা নতুন পদ্ধতিতে শেখানো","শাস্তি দেওয়া","পূরো ক্লাসকে একসাথে পড়ানো"],"answer":"B","explanation":"সঠিক উত্তর: B. ডায়াগনষ্টিক টেষ্টের মাধ্যমে শিক্ষার্থীর নির্দিষ্ট দুর্বলতা বুঝে সেই অনুযায়ী আলাদা বা নতুন পদ্ধতিতে শেখানো","kind":"Math","level":"HARD"},{"orig":267,"id":267,"text":"শিশুদের মধ্যে অঙ্কের ভয় (Math Anxiety) তৈরি হওয়ার একটি প্রধান কারণ হলো:","options":["বাস্তবৰ জীবনের সাথে অঙ্কের সংযোগ স্থাপন","শিক্ষকের কঠোর মনোভাব এবং অঙ্ককে শুধুমাত্র সঠিক বা ভুল' হিসেবে দেখা","খেলাধুলার মাধ্যমে শেখা","পাজল সমাধান করা"],"answer":"B","explanation":"সঠিক উত্তর: B. শিক্ষকের কঠোর মনোভাব এবং অঙ্ককে শুধুমাত্র সঠিক বা ভুল' হিসেবে দেখা","kind":"Math","level":"HARD"},{"orig":268,"id":268,"text":"‘Anecdotal Record' গণিত মূল্যায়নে কীভাবে ব্যবহৃত হয়?","options":["পরীক্ষার নম্বর লিখতে","ক্লাসে কোনো ছাত্রের একটি বিশেষ গাণিতিক পদ্ধতি বা আচরণের লিখিত বর্ণনা রাখতে","অনুপস্থিতির হিসাব রাখতে","সিলেবাসের হিসাব রাখতে"],"answer":"B","explanation":"সঠিক উত্তর: B. ক্লাসে কোনো ছাত্রের একটি বিশেষ গাণিতিক পদ্ধতি বা আচরণের লিখিত বর্ণনা রাখতে","kind":"Math","level":"HARD"},{"orig":269,"id":269,"text":"গণিত হলো একটি স্বতঃসিদ্ধ (Axiomatic) বিজ্ঞান। এর অর্থ কী?","options":["এটি অনুমানের ওপর নির্ভরশীল","এটি কিছু স্বীকৃত স্বতঃসিদ্ধ (Axioms) এবং যুক্তির ওপর ভিত্তি করে গড়ে উঠেছে","এটি কেৱল মুখস্থ বিদ্যা","এটি অবাস্তব"],"answer":"B","explanation":"সঠিক উত্তর: B. এটি কিছু স্বীকৃত স্বতঃসিদ্ধ (Axioms) এবং যুক্তির ওপর ভিত্তি করে গড়ে উঠেছে","kind":"Math","level":"HARD"},{"orig":270,"id":270,"text":"'Deductive Reasoning' (অবরোহী যুক্তি) বলতে বোঝায়:","options":["সাধারণ সত্য বা সূত্র থেকে নির্দিষ্ট সিদ্ধান্তে আসা (General to Specific)","নির্দিষ্ট উদাহরণ থেকে সাধারণ নিয়মে যাওয়া","আন্দাজ করা","প্রমাণ না করা"],"answer":"A","explanation":"সঠিক উত্তর: A. সাধারণ সত্য বা সূত্র থেকে নির্দিষ্ট সিদ্ধান্তে আসা (General to Specific)","kind":"Math","level":"HARD"}]; let DURATION=250*60;
+const DEFAULT_DURATION_SECONDS=250*60;
+const ADMIN_PASSWORD="Bikash@420";
+const RESULTS_KEY="ctet_primary_270_mock_v1";
+const CENTRAL_SCOREBOARD_URL="https://script.google.com/macros/s/AKfycby_4CKFXC9kKnNZbUE_BWLQBPQlH44kOzR1CpNhfHKNL5AO2Kj5JAeVyRymPeFldVM/exec";
+const CENTRAL_API_TOKEN="CTET_SCOREBOARD_2026_BIKAS_420";
+const CENTRAL_ADMIN_CACHE_KEY="geo_central_scoreboard_admin_cache_v1";
+
+let candidate="",idx=0,answers={},startAt=0,examStartAt=null,timerHandle=null,submitted=false,warningGiven=false;
+let revisionMode=false,revisionQuestions=[],revisionAnswers={},revisionStartAt=0,revisionTimerHandle=null,revisionSubmitted=false,mainResult=null;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+const letter=i=>String.fromCharCode(65+i);
+const answerIndex=L=>L.charCodeAt(0)-65;
+
+function getResults(){try{return JSON.parse(localStorage.getItem(RESULTS_KEY)||"[]")}catch(e){return[]}}
+function saveResults(a){localStorage.setItem(RESULTS_KEY,JSON.stringify(a))}
+
+
+function submitToCentralScoreboard(r){
+  const status=$("centralStatus");
+  const payload={
+    action:"submit",
+    token:CENTRAL_API_TOKEN,
+    candidateName:String(r.candidate||"").trim(),
+    score:Number(r.score)||0,
+    percentage:Number(r.percentage)||0,
+    timeUsedSeconds:Number(r.timeUsed)||0,
+    examStart:r.startExam||examStartAt||"",
+    examEnd:r.completedAt||new Date().toISOString()
+  };
+  const body=JSON.stringify(payload);
+
+  if(status){
+    status.textContent="CENTRAL SCOREBOARD: SENDING RESULT…";
+    status.style.color="var(--green)";
+  }
+
+  // sendBeacon is ideal when the candidate has just submitted the exam.
+  try{
+    if(navigator.sendBeacon){
+      const queued=navigator.sendBeacon(
+        CENTRAL_SCOREBOARD_URL,
+        new Blob([body],{type:"text/plain;charset=UTF-8"})
+      );
+      if(queued){
+        if(status){
+          status.textContent="CENTRAL SCOREBOARD: RESULT SAVED / QUEUED";
+          status.style.color="var(--green)";
+        }
+        return Promise.resolve(true);
+      }
+    }
+  }catch(e){}
+
+  // Reliable fallback when sendBeacon is unavailable.
+  return fetch(CENTRAL_SCOREBOARD_URL,{
+    method:"POST",
+    mode:"no-cors",
+    redirect:"follow",
+    credentials:"omit",
+    headers:{"Content-Type":"text/plain;charset=UTF-8"},
+    body:body,
+    keepalive:true
+  }).then(()=>{
+    if(status){
+      status.textContent="CENTRAL SCOREBOARD: RESULT SENT";
+      status.style.color="var(--green)";
+    }
+    return true;
+  }).catch(()=>{
+    if(status){
+      status.textContent="CENTRAL SCOREBOARD: CONNECTION FAILED";
+      status.style.color="var(--red)";
+    }
+    return false;
+  });
+}
+
+let audioCtx=null;
+function ensureAudio(){try{const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;if(!audioCtx)audioCtx=new C();if(audioCtx.state==="suspended")audioCtx.resume();return audioCtx}catch(e){return null}}
+
+function beep(correct){
+  const c=ensureAudio();if(!c)return;
+  const now=c.currentTime;
+  const tones=correct?[523.25,659.25,783.99,1046.5,1318.51]:[220,174.61,146.83,110,82.41];
+  const type=correct?"sine":"square";
+  tones.forEach((f,i)=>{
+    const o=c.createOscillator(),g=c.createGain();
+    const t=now+i*(correct?.07:.075);
+    o.type=type;o.frequency.setValueAtTime(f,t);
+    g.gain.setValueAtTime(.0001,t);
+    g.gain.exponentialRampToValueAtTime(1.0,t+.012);
+    g.gain.exponentialRampToValueAtTime(.0001,t+(correct?.25:.30));
+    o.connect(g);g.connect(c.destination);o.start(t);o.stop(t+(correct?.27:.32));
+  });
+}
+
+function fireworks(good){
+  const canvas=$("fx"),ctx=canvas.getContext("2d");
+  const dpr=Math.min(devicePixelRatio||1,2);
+  canvas.width=innerWidth*dpr;canvas.height=innerHeight*dpr;
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  const cx=innerWidth/2,cy=innerHeight*.48;
+  const particles=[];
+  const count=190;
+  for(let i=0;i<count;i++){
+    const a=Math.PI*2*i/count+(Math.random()-.5)*.045;
+    const ring=i%3;
+    const speed=(ring===0?3.4:ring===1?4.8:6.0)+Math.random()*1.8;
+    particles.push({
+      x:cx,y:cy,vx:Math.cos(a)*speed,vy:Math.sin(a)*speed,
+      life:55+Math.random()*30,size:1.4+Math.random()*2.4,
+      delay:Math.random()*5
+    });
+  }
+  let frame=0;
+  function draw(){
+    ctx.clearRect(0,0,innerWidth,innerHeight);
+    particles.forEach(p=>{
+      if(frame<p.delay)return;
+      p.x+=p.vx;p.y+=p.vy;p.vy+=.055;p.vx*=.994;p.vy*=.994;p.life--;
+      if(p.life>0){
+        ctx.globalAlpha=Math.min(1,p.life/22);
+        ctx.fillStyle=good?"#18e76b":"#ff3152";
+        ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();
+      }
+    });
+    ctx.globalAlpha=1;
+    if(frame++<92)requestAnimationFrame(draw);else ctx.clearRect(0,0,innerWidth,innerHeight);
+  }
+  draw();
+}
+
+function formatTime(sec){
+  sec=Math.max(0,Math.floor(Number(sec)||0));
+  if(sec>=3600){
+    const h=Math.floor(sec/3600),m=Math.floor((sec%3600)/60),ss=sec%60;
+    return h+":"+String(m).padStart(2,"0")+":"+String(ss).padStart(2,"0");
+  }
+  return String(Math.floor(sec/60)).padStart(2,"0")+":"+String(sec%60).padStart(2,"0");
+}
+
+function parseCentralDateTime(value, baseDate){
+  if(value===null || value===undefined || value==="") return NaN;
+  const v=String(value).trim();
+  if(!v) return NaN;
+
+  // ISO / normal browser date strings.
+  let t=Date.parse(v);
+  if(Number.isFinite(t)) return t;
+
+  // Common Central Sheet formats: DD/MM/YYYY HH:mm:ss, DD/MM/YYYY hh:mm AM/PM,
+  // and similar comma-separated variants.
+  let m=v.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{2,4})(?:[ ,T]+(\d{1,2}):(\d{2})(?::(\d{2}))?\s*(AM|PM)?)?$/i);
+  if(m){
+    let day=Number(m[1]), mon=Number(m[2])-1, year=Number(m[3]);
+    if(year<100) year+=2000;
+    let hh=Number(m[4]||0), mm=Number(m[5]||0), ss=Number(m[6]||0);
+    const ap=(m[7]||"").toUpperCase();
+    if(ap){ if(hh===12) hh=0; if(ap==="PM") hh+=12; }
+    const d=new Date(year,mon,day,hh,mm,ss,0);
+    return Number.isFinite(d.getTime())?d.getTime():NaN;
+  }
+
+  // Time-only value such as 02:40 PM. Combine it with the supplied base date.
+  m=v.match(/^(\d{1,2}):(\d{2})(?::(\d{2}))?\s*(AM|PM)?$/i);
+  if(m && baseDate){
+    const b=new Date(baseDate);
+    if(Number.isFinite(b.getTime())){
+      let hh=Number(m[1]), mm=Number(m[2]), ss=Number(m[3]||0);
+      const ap=(m[4]||"").toUpperCase();
+      if(ap){ if(hh===12) hh=0; if(ap==="PM") hh+=12; }
+      b.setHours(hh,mm,ss,0);
+      return b.getTime();
+    }
+  }
+  return NaN;
+}
+
+function formatCentralTimeUsed(raw,startExam,completedAt,resultDuration){
+  const maxDuration=(Number(resultDuration)>0?Number(resultDuration):DURATION);
+
+  // Best source: actual start/submission timestamps.
+  let endMs=parseCentralDateTime(completedAt);
+  let startMs=parseCentralDateTime(startExam, endMs);
+  if(Number.isFinite(startMs) && Number.isFinite(endMs)){
+    // If only clock times were supplied and the exam crossed midnight, account for it.
+    if(endMs<startMs && (startMs-endMs)<24*3600*1000) endMs+=24*3600*1000;
+    const elapsed=Math.floor((endMs-startMs)/1000);
+    if(elapsed>=0 && elapsed<=maxDuration) return formatTime(elapsed);
+  }
+
+  if(raw===null||raw===undefined||raw==="")return "—";
+
+  // New records normally arrive as seconds.
+  if(typeof raw==="number" && isFinite(raw)){
+    return raw>=0 && raw<=maxDuration ? formatTime(raw) : "—";
+  }
+
+  const v=String(raw).trim();
+  if(!v)return "—";
+
+  // Plain MM:SS or HH:MM:SS duration.
+  const parts=v.split(":").map(Number);
+  if(parts.length===2 && parts.every(Number.isFinite)){
+    const total=parts[0]*60+parts[1];
+    return total<=maxDuration && total>=0 ? formatTime(total) : "—";
+  }
+  if(parts.length===3 && parts.every(Number.isFinite)){
+    const total=parts[0]*3600+parts[1]*60+parts[2];
+    return total<=maxDuration && total>=0 ? formatTime(total) : "—";
+  }
+
+  // Some older Google Sheet date-formatted duration cells come back as an ISO
+  // date around 1899/1900. Treat only the clock portion as a duration, and only
+  // when it is within the configured exam duration.
+  const iso=v.match(/^(1899|1900)-\d{2}-\d{2}T(\d{2}):(\d{2}):(\d{2})(?:\.\d+)?(?:Z)?$/i);
+  if(iso){
+    const total=Number(iso[2])*3600+Number(iso[3])*60+Number(iso[4]);
+    return total>=0 && total<=maxDuration ? formatTime(total) : "—";
+  }
+
+  return "—";
+}
+function sectionFor(q){
+  const names={EVS:"ENVIRONMENTAL STUDIES",English:"ENGLISH",CDP:"CHILD DEVELOPMENT & PEDAGOGY",Bengali:"BENGALI",Math:"MATHEMATICS"};
+  return names[q.kind]||"MOCK TEST";
+}
+
+function render(){
+  if(revisionMode){
+    $("revisionBanner")?.classList.add("show");
+    $("timer").textContent="00:00";
+  }else{
+    $("revisionBanner")?.classList.remove("show");
+  }
+  const list=revisionMode?revisionQuestions:QUESTIONS;
+  const q=list[idx], a=(revisionMode?revisionAnswers:answers)[q.id]||"";
+  const currentAnswers=revisionMode?revisionAnswers:answers;
+  const answeredCount=Object.keys(currentAnswers).filter(k=>list.some(x=>x.id===k)).length;
+  $("progress").textContent=`Question ${idx+1} of ${list.length}${revisionMode?" · REVISION TEST":""} · Attempted ${answeredCount}/${list.length}`;
+  const pf=$("progressFill");
+  if(pf){
+    const pct=Math.round(((idx+1)/list.length)*100);
+    pf.style.width=Math.max(1,pct)+"%";
+    pf.classList.toggle("done",idx>=list.length-1);
+  }
+  $("sectionLabel").textContent=sectionFor(q);
+  const ok=!!q.answer && a===q.answer;
+  const fb=(a && !ok)?`<div class="explain"><div class="wrong-title">ভুল হয়েছে</div><div>${esc(q.explanation)}</div></div>`:"";
+  const btnClass=a?(ok?"answer-correct":"answer-wrong"):"";
+  const hasOptions=q.options.length>0;
+  const canContinue=!!a || !hasOptions || !q.answer;
+  const optionHtml=hasOptions ? `<div class="options">${q.options.map((o,i)=>{
+      const L=letter(i);
+      let cls="opt";
+      if(a===L)cls+=" selected";
+      if(a && q.answer){if(q.answer===L)cls+=" correct";else if(a===L)cls+=" wrong"}
+      return `<button type="button" class="${cls}" data-opt="${L}" ${a?"disabled":""}>
+        <span class="letter">${L}.</span><span>${esc(o)}</span></button>`;
+    }).join("")}</div>` :
+    `<div class="feedback bad" style="margin-top:12px">এই প্রশ্নটির অপশন উৎস/PDF-এ দেওয়া নেই। নতুন অপশন যোগ করা হয়নি।</div>`;
+  $("qcard").innerHTML=`
+    <div class="qnum">Q${q.id} · ${q.kind.toUpperCase()} · <span style="color:var(--blue)">LEVEL: ${esc(q.level||"MEDIUM")}</span></div>
+    <div class="question">${esc(q.text)}</div>
+    ${optionHtml}
+    ${fb?`<div class="feedback ${a?(ok?"ok":"bad"):""}">${fb}</div>`:""}
+    <div class="actions"><button id="nextBtn" class="next ${btnClass}" type="button" ${canContinue?"":"disabled"}>${idx===list.length-1?"FINISH":"CONTINUE"}</button></div>`;
+  $("qcard").querySelectorAll("[data-opt]").forEach(el=>el.onclick=()=>choose(el.dataset.opt));
+  const nextBtn=$("nextBtn");
+  const continueVibrate=()=>{
+    if(revisionMode || !navigator.vibrate)return;
+    try{navigator.vibrate([140,50,140,50,220])}catch(e){}
+  };
+  nextBtn.addEventListener("pointerdown",continueVibrate,{passive:true});
+  nextBtn.onclick=()=>{
+    nextBtn.classList.remove("tap-vibrate");void nextBtn.offsetWidth;nextBtn.classList.add("tap-vibrate");
+    if(idx<list.length-1){idx++;render()}else revisionMode?finishRevision():submitExam()
+  };
+  if(a && !ok){
+    requestAnimationFrame(()=>{nextBtn.classList.remove("answer-wrong");void nextBtn.offsetWidth;nextBtn.classList.add("answer-wrong");});
+  }
+  $("correctBtn").textContent=`CORRECT: ${countCorrectLive()}`;
+}
+function countCorrectLive(){let n=0;QUESTIONS.forEach(q=>{if(answers[q.id]===q.answer)n++});return n}
+
+function choose(L){
+  if(revisionMode){if(revisionSubmitted)return;const q=revisionQuestions[idx];if(revisionAnswers[q.id])return;revisionAnswers[q.id]=L;const ok=L===q.answer;beep(ok);fireworks(ok);render();return;}
+  if(submitted)return;const q=QUESTIONS[idx];if(answers[q.id])return;answers[q.id]=L;const ok=L===q.answer;beep(ok);fireworks(ok);render();
+}
+
+
+function startViewQuestions(){
+  const view=document.getElementById("viewScreen");
+  if(!view)return;
+  const list=QUESTIONS;
+  view.innerHTML=`
+    <div class="viewModeWrap">
+      <div class="viewModeInner">
+        <div class="viewModeHeader">
+          <strong>VIEW QUESTIONS · ${list.length} QUESTIONS</strong>
+          <span>Scroll up/down to read</span>
+        </div>
+        <div id="viewQuestionList">
+          ${list.map(q=>`
+            <div class="viewQuestion">
+              <div class="qnum">Q${q.id} · ${q.kind.toUpperCase()} · <span style="color:var(--blue)">LEVEL: ${esc(q.level||"MEDIUM")}</span></div>
+              <div class="question">${esc(q.text)}</div>
+              <div class="options">
+                ${q.options.map((o,i)=>`
+                  <button type="button" class="opt viewOnlyOpt" disabled>
+                    <span class="letter">${letter(i)}.</span><span>${esc(o)}</span>
+                  </button>
+                `).join("")}
+              </div>
+            </div>
+          `).join("")}
+        </div>
+        <button id="closeViewQuestions" class="viewModeExit" type="button">BACK TO START</button>
+      </div>
+    </div>`;
+  view.classList.remove("hidden");
+  document.getElementById("closeViewQuestions").onclick=closeViewQuestions;
+}
+
+function closeViewQuestions(){
+  const view=document.getElementById("viewScreen");
+  if(view)view.classList.add("hidden");
+}
+
+function startExam(){
+  const n=$("candidate").value.trim();
+  if(!n){$("candidate").focus();return}
+
+  // Start immediately from the user's tap. Do not wait for the central
+  // test registry/network, so WhatsApp/GitHub mobile launches remain smooth.
+  // The configured duration is refreshed in the background.
+  const startBtn=$("startBtn");
+  if(startBtn)startBtn.disabled=true;
+  ensureAudio();
+  candidate=n;idx=0;answers={};submitted=false;warningGiven=false;
+  startAt=Date.now();
+  examStartAt=new Date(startAt).toISOString();
+  $("start").classList.add("hidden");
+  $("result").classList.add("hidden");
+  $("admin").classList.add("hidden");
+  $("exam").classList.remove("hidden");
+  render();
+  timerHandle=setInterval(tick,250);
+  tick();
+  if(startBtn)startBtn.disabled=false;
+
+}
+
+function tick(){
+  const used=Math.floor((Date.now()-startAt)/1000),left=DURATION-used;
+  $("timer").textContent=formatTime(Math.max(0,left));
+  const lastTen=left<=600 && left>0;
+  $("timer").classList.toggle("warn",lastTen);
+  if(lastTen && !warningGiven){
+    warningGiven=true;
+    try{
+      const c=ensureAudio();
+      if(c){
+        const playWarningTone=(delay)=>{
+          setTimeout(()=>{
+            try{
+              const o=c.createOscillator(),g=c.createGain();
+              o.type="square";
+              o.frequency.setValueAtTime(880,c.currentTime);
+              o.frequency.exponentialRampToValueAtTime(660,c.currentTime+0.22);
+              g.gain.setValueAtTime(0.0001,c.currentTime);
+              g.gain.exponentialRampToValueAtTime(0.28,c.currentTime+0.015);
+              g.gain.exponentialRampToValueAtTime(0.0001,c.currentTime+0.28);
+              o.connect(g);g.connect(c.destination);
+              o.start();o.stop(c.currentTime+0.3);
+            }catch(e){}
+          },delay);
+        };
+        playWarningTone(0);
+        playWarningTone(360);
+        playWarningTone(720);
+      }
+    }catch(e){}
+    setTimeout(()=>{if(!submitted) alert("⚠️ সতর্কবার্তা: পরীক্ষার শেষ ১০ মিনিট শুরু হয়েছে।");},50);
+  }
+  if(left<=0 && !submitted)submitExam();
+}
+
+function submitExam(){
+  if(submitted)return;submitted=true;clearInterval(timerHandle);
+  const used=Math.min(DURATION,Math.floor((Date.now()-startAt)/1000));
+  let correct=0,attempted=0;
+  QUESTIONS.forEach(q=>{if(answers[q.id]){attempted++;if(answers[q.id]===q.answer)correct++}});
+  const incorrect=attempted-correct,unanswered=QUESTIONS.length-attempted;
+  const result={
+    id:(crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random()),
+    candidate,score:correct,percentage:correct/QUESTIONS.length*100,correct,incorrect,attempted,unanswered,
+    timeUsed:used,durationSeconds:DURATION,startExam:examStartAt||new Date().toISOString(),completedAt:new Date().toISOString(),answers:{...answers}
+  };
+  const arr=getResults();arr.push(result);saveResults(arr);
+  mainResult=result;
+  submitToCentralScoreboard(result);
+  startRevision(result.answers);
+}
+
+function showResult(r){
+  $("exam").classList.add("hidden");$("result").classList.remove("hidden");
+  const rows=QUESTIONS.map(q=>{
+    const a=r.answers[q.id]||"",ok=a===q.answer;
+    const your=a?`${a}. ${q.options[answerIndex(a)]}`:"Unanswered";
+    const correct=`${q.answer}. ${q.options[answerIndex(q.answer)]}`;
+    return `<div class="reviewRow"><div class="reviewQ">Q${q.id}. ${esc(q.text)}</div>
+      <div class="reviewA">Candidate's Answer: <b>${esc(your)}</b> · Correct Answer: <b>${esc(correct)}</b>
+      <span class="tag ${!a?"skip":ok?"ok":"bad"}">${!a?"UNANSWERED":ok?"CORRECT":"WRONG"}</span>
+       <div style="margin-top:8px"><div class="explain"><b>ব্যাখ্যা:</b> ${esc(q.explanation)}</div></div></div></div>`;
+  }).join("");
+  $("result").innerHTML=`<div class="resultCard">
+    <h1 class="resultTitle">MOCK TEST RESULT</h1>
+    <div class="candidate">${esc(r.candidate)}</div>
+    <div class="stats">
+      <div class="stat"><small>Total Questions</small><strong>${QUESTIONS.length}</strong></div>
+      <div class="stat"><small>Attempted</small><strong>${r.attempted}</strong></div>
+      <div class="stat"><small>Correct</small><strong>${r.correct}</strong></div>
+      <div class="stat"><small>Incorrect</small><strong>${r.incorrect}</strong></div>
+      <div class="stat"><small>Unanswered</small><strong>${r.unanswered}</strong></div>
+      <div class="stat"><small>Score</small><strong>${r.score}</strong></div>
+      <div class="stat"><small>Percentage</small><strong>${r.percentage.toFixed(2)}%</strong></div>
+      <div class="stat"><small>Time Used</small><strong>${formatTime(r.timeUsed)}</strong></div>
+    </div>
+    <div class="resultActions">
+      <button onclick="window.print()">PRINT / SAVE PDF</button>
+      <button onclick="location.reload()">BACK TO START</button>
+    </div>
+    <div class="review"><h3>ANSWER REVIEW</h3>${rows}</div>
+  </div>`;
+}
+
+function startRevision(originalAnswers){
+  revisionQuestions=QUESTIONS.filter(q=>originalAnswers[q.id] && originalAnswers[q.id]!==q.answer);
+  if(!revisionQuestions.length){revisionMode=false;clearInterval(revisionTimerHandle);showResult(mainResult);return;}
+  revisionMode=true;revisionAnswers={};revisionSubmitted=false;idx=0;revisionStartAt=Date.now();
+  $("result").classList.add("hidden");$("admin").classList.add("hidden");$("start").classList.add("hidden");$("exam").classList.remove("hidden");
+  $("timer").classList.remove("warn");$("timer").textContent="10:00";render();
+  clearInterval(revisionTimerHandle);revisionTimerHandle=setInterval(tickRevision,250);tickRevision();
+}
+function tickRevision(){if(!revisionMode||revisionSubmitted)return; const left=Math.max(0,600-Math.floor((Date.now()-revisionStartAt)/1000)); $("timer").textContent=formatTime(left); if(left<=0)finishRevision();}
+function finishRevision(){
+  if(revisionSubmitted)return;revisionSubmitted=true;clearInterval(revisionTimerHandle);
+  revisionMode=false;revisionQuestions=[];revisionAnswers={};$("revisionBanner")?.classList.remove("show");$("timer").textContent="00:00";$("timer").classList.remove("warn");
+  // Revision is practice only: no revision score/result is calculated or shown.
+  if(mainResult)showResult(mainResult);
+}
+
+let adminPasswordSession="";
+
+function adminLogin(){
+  const p=prompt("Admin Password");
+  if(p!==ADMIN_PASSWORD){
+    alert("Incorrect password.");
+    return;
+  }
+  adminPasswordSession=p;
+  $("start").classList.add("hidden");
+  $("exam").classList.add("hidden");
+  $("result").classList.add("hidden");
+  $("admin").classList.remove("hidden");
+  $("timer").textContent="75:00";
+  $("correctBtn").textContent="CORRECT: 0";
+  renderCentralAdmin();
+}
+
+function fetchCentralJson(url, attempts=3){
+  return new Promise((resolve,reject)=>{
+    let lastError=null;
+    const tryOnce=(n)=>{
+      fetch(url,{
+        method:"GET",
+        mode:"cors",
+        credentials:"omit",
+        cache:"no-store",
+        redirect:"follow"
+      }).then(async r=>{
+        const text=await r.text();
+        const clean=text.trim();
+        if(!r.ok) throw new Error("HTTP "+r.status);
+        if(!clean || clean[0]==="<" || /^<!doctype/i.test(clean)){
+          throw new Error("Central server returned HTML instead of JSON.");
+        }
+        try{
+          resolve(JSON.parse(clean));
+        }catch(e){
+          throw new Error("Central server returned invalid JSON.");
+        }
+      }).catch(err=>{
+        lastError=err;
+        if(n<attempts){
+          setTimeout(()=>tryOnce(n+1),700*n);
+        }else{
+          reject(lastError||new Error("Connection failed."));
+        }
+      });
+    };
+    tryOnce(1);
+  });
+}
+
+function saveCentralAdminCache(data){
+  try{
+    localStorage.setItem(
+      CENTRAL_ADMIN_CACHE_KEY,
+      JSON.stringify({savedAt:Date.now(),data:data})
+    );
+  }catch(e){}
+}
+
+function getCentralAdminCache(){
+  try{
+    const x=JSON.parse(localStorage.getItem(CENTRAL_ADMIN_CACHE_KEY)||"null");
+    return x&&Array.isArray(x.data)?x:null;
+  }catch(e){return null}
+}
+
+function renderCentralAdmin(){
+  const wrap=$("adminTable");
+  wrap.innerHTML='<div class="empty">Loading CENTRAL SCOREBOARD…</div>';
+
+  fetchCentralJson(CENTRAL_SCOREBOARD_URL+"?action=results&_="+Date.now(),3)
+    .then(data=>{
+      if(!data.ok)throw new Error(data.error||"Unable to load results.");
+      const results=Array.isArray(data.results)?data.results:[];
+      saveCentralAdminCache(results);
+      renderCentralAdminShell(results);
+    })
+    .catch(err=>{
+      const cached=getCentralAdminCache();
+      if(cached){
+        renderCentralAdminShell(cached.data);
+        wrap.insertAdjacentHTML(
+          "afterbegin",
+          '<div class="empty" style="padding:8px 0;color:var(--gold)">CENTRAL SERVER TEMPORARILY UNAVAILABLE — showing the last successfully loaded results. Tap REFRESH RESULTS to try again.</div>'
+        );
+      }else{
+        wrap.innerHTML='<div class="empty">CENTRAL SCOREBOARD TEMPORARILY UNAVAILABLE: '+esc(err.message||"Connection failed.")+'<br><br>Tap REFRESH RESULTS to try again.</div>';
+      }
+    });
+}
+
+function renderCentralAdminShell(results){
+  const wrap=$("adminTable");
+
+  wrap.innerHTML=`
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px">
+      <div style="font-weight:1000">CENTRAL SCOREBOARD</div>
+      <button id="centralRefreshBtn" style="border:1px solid #444;border-radius:11px;padding:10px 13px;background:#111;color:#fff;font-weight:900">REFRESH RESULTS</button>
+    </div>
+    <div id="centralTestInfo" style="margin:6px 0 12px;color:var(--muted);font-weight:800">
+      All HTML exam results are stored in this single scoreboard.
+    </div>
+    <div id="centralResultsArea"></div>
+  `;
+
+  $("centralRefreshBtn").onclick=renderCentralAdmin;
+  renderCentralResults(results||[]);
+}
+
+function renderCentralResults(results){
+  const area=$("centralResultsArea");
+  if(!area)return;
+
+  if(!results.length){
+    area.innerHTML='<div class="empty">No results found.</div>';
+    return;
+  }
+
+  area.innerHTML=`
+    <div class="tableWrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Candidate Name</th>
+            <th>Scored</th>
+            <th>Exam Start</th>
+            <th>Exam End</th>
+            <th>Time Used (Minutes)</th>
+            <th>Percentage</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${results.map(r=>`
+            <tr>
+              <td>${esc(r.date||"")}</td>
+              <td>${esc(r.candidateName||"")}</td>
+              <td>${esc(r.scored==null?"":r.scored)}</td>
+              <td>${esc(r.examStart||"")}</td>
+              <td>${esc(r.examEnd||"")}</td>
+              <td>${esc(r.timeUsed||"")}</td>
+              <td>${esc(r.percentage||"")}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>`;
+}
+
+function downloadCSV(){
+  const rows=document.querySelectorAll("#centralResultsArea table tbody tr");
+  if(!rows.length){alert("No Central results to download.");return}
+
+  const lines=[
+    ["Date","Candidate Name","Scored","Exam Start","Exam End","Time Used (Minutes)","Percentage"]
+  ];
+
+  rows.forEach(tr=>{
+    lines.push(Array.from(tr.cells).map(td=>td.textContent.trim()));
+  });
+
+  const txt="\uFEFF"+lines.map(row=>
+    row.map(v=>`"${String(v).replaceAll('"','""')}"`).join(",")
+  ).join("\r\n");
+
+  const blob=new Blob([txt],{type:"text/csv;charset=utf-8"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="Central_Scoreboard_Results.csv";
+  a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+
+function toggleTheme(){
+  document.body.classList.toggle("light");
+  localStorage.setItem("ctet_mock_theme",document.body.classList.contains("light")?"light":"dark");
+  $("themeBtn").textContent=document.body.classList.contains("light")?"☾ DARK":"☀ THEME";
+}
+function loadTheme(){
+  const light=localStorage.getItem("ctet_mock_theme")==="light";
+  document.body.classList.toggle("light",light);$("themeBtn").textContent=light?"☾ DARK":"☀ THEME";
+}
+
+$("startBtn").onclick=startExam;
+$("candidate").addEventListener("keydown",e=>{if(e.key==="Enter")startExam()});
+$("themeBtn").onclick=toggleTheme;
+$("viewBtn").onclick=startViewQuestions;
+$("adminBtn").onclick=adminLogin;
+$("refreshAdmin").onclick=renderCentralAdmin;
+$("csvAdmin").onclick=downloadCSV;
+$("printAdmin").onclick=()=>window.print();
+$("clearAdmin").onclick=()=>{
+  alert("Central Scoreboard data is stored in Google Sheet. To preserve all previous results, this portal does not delete them.");
+};
+loadTheme();
+</script>
+<script id="REAL_EXAM_LAST10_TIMER_ONLY_SCRIPT">
+(function(){
+  function update(){
+    var t=document.getElementById('timer');
+    if(!t)return;
+    if(typeof revisionMode!=='undefined' && revisionMode){
+      t.classList.remove('real-exam-last10');
+      return;
+    }
+    var s=(t.textContent||'').trim();
+    var m=s.match(/^(\d{1,2}):(\d{2})$/);
+    if(!m){
+      t.classList.remove('real-exam-last10');
+      return;
+    }
+    var seconds=parseInt(m[1],10)*60+parseInt(m[2],10);
+    if(seconds>0 && seconds<=600){
+      t.classList.add('real-exam-last10');
+    }else{
+      t.classList.remove('real-exam-last10');
+    }
+  }
+  setInterval(update,100);
+  document.addEventListener('DOMContentLoaded',update);
+})();
+</script>
+</body>
+</html>
